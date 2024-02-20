@@ -11,19 +11,19 @@ Le livre est disponible en version PDF dans [la boutique](https://www.letogames.
 La fiche de personnage reste fidèle à la version simple du livre.
 En plus est ajouté un onglet qui calcule automatiquement le nombre de jet de dés de chaque trait pour donner des informations sur l'évolution du personnage.
 
-[Exemple de fiche de personnage](../yuigahama/assets/img/screenshots/fiche_personnage.png)
+[Exemple de fiche de personnage](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/fiche_personnage.png)
 
 Une fiche PNJ est disponible.
 C'est une version simplifiée de la fiche de personnage avec juste les traits, la description et les points de vie.
 
-[Exemple de fiche de personnage](../yuigahama/assets/img/screenshots/fiche_pnj.png)
+[Exemple de fiche de PNJ](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/fiche_pnj.png)
 
 
 ## Compendium
 Un compendium est disponible recensant les attributs de base présents dans le livre avec leurs illustrations.
 Un grand merci à l'auteur qui a autorisé la diffusion des illustrations et des descriptions du livre pour les utilisateurs du système.
 
-[Exemple sur le Compendium](../yuigahama/assets/img/screenshots/compendium.png)
+[Exemple sur le Compendium](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/compendium.png)
 
 ## Options du système
 Une option permet de désactiver la police de caractère pour ceux qui auraient des difficultés à la lire.

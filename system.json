@@ -9,12 +9,12 @@
     }
   ],
   "url": "https://github.com/remedywu/yuigahama",
-  "license": "license.md",
-  "readme": "README.md",
-  "bugs": "Replace this with a link to file issues or tickets",
-  "changelog": "CHANGELOG.md",
-  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
-  "download": "This must link to a .zip file of the current version",
+  "license": "https://raw.githubusercontent.com/remedywu/yuigahama/master/license.md",
+  "readme": "https://raw.githubusercontent.com/remedywu/yuigahama/master/README.md",
+  "bugs": "https://github.com/remedywu/yuigahama/issues",
+  "changelog": "https://raw.githubusercontent.com/remedywu/yuigahama/master/CHANGELOG.md",
+  "manifest": "https://raw.githubusercontent.com/remedywu/yuigahama/master/system.json",
+  "download": "https://github.com/remedywu/yuigahama/releases/download/v1.0.0/yuigahama-v1.0.0.zip",
   "version": "1.0.0",
   "compatibility": {
     "minimum": 11,
@@ -64,12 +64,12 @@
     },
     {
       "type": "screenshot",
-      "url": "",
+      "url": "https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/fiche_personnage.png",
       "caption": "Fiche de Personnage"
     },
     {
       "type": "screenshot",
-      "url": "",
+      "url": "https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/compendium.png",
       "caption": "Compendium des Attributs"
     }
   ],
