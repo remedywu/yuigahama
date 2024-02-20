@@ -1,0 +1,16 @@
+<div class="clearareaBox tokens">
+    <div>
+        <div class="sheet-headline"><span class="sheet-banner-text">{{localize 'yuigahama.tokens.tokens'}}</span></div>
+        <div class="flexrow tokens_input">
+            <input type="number" name="system.token.value" value="{{system.token.value}}" min="0" data-dtype="Number"/>
+        </div>
+    </div>
+    {{#if (gt system.token.value 6)}}
+    <div class="luckyseven_div">
+        <a class="ybs-button-luckyseven">
+            {{localize "yuigahama.tokens.luckyseven"}}
+        </a>
+    </div>
+    {{/if}}
+</div>
+

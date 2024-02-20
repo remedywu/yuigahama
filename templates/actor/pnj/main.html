@@ -1,0 +1,34 @@
+<section class="gridpnj">
+    <div class="sheet-body">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+    </div>
+
+    <div>
+        <div class="traits flexcol">
+            <label class="traits_title_label">{{localize 'yuigahama.main.traits'}}</label>
+            {{#each actor.system.traits as |trait key|}}
+            <div class="flexrow flex-group-center">
+                <label class="resource-label rollable flexlarge align-left vertical-label" data-value="{{trait.value}}" data-label="{{trait.name}}" >{{trait.name}}</label>
+                <div>
+                    <img class="icon_trait rollable" src="systems/yuigahama/assets/img/traits/{{key}}.jpg" alt="{{key}}" data-value="{{trait.value}}" data-label="{{trait.name}}"
+                         data-tooltip="{{trait.label}}">
+                </div>
+                <input class="traits_input" type="number" name="system.traits.{{key}}.value" value="{{trait.value}}" min="{{trait.min}}" max="{{trait.max}}" data-dtype="Number"/>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <section class=" pnjdescription grid-span-2">
+                {{> "systems/yuigahama/templates/actor/pnj/description.html"}}
+            </section>
+        </div>
+    </div>
+</section>
+
+{{!-- Life Points --}}
+<section class="grid grid-2col">
+    {{> "systems/yuigahama/templates/actor/personnage/health.html"}}
+</section>

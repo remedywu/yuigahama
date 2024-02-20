@@ -2,7 +2,7 @@
 
 Le système implémente pour Foundry VTT les règles du jeu de rôle Yuigahama Bad Seeds.
 
-Pour jouer, vous aurez besoin du livre de règles édité par les [éditions du troisième eil](https://www.letogames.com/)
+Pour jouer, vous aurez besoin du livre de règles édité par les [éditions du Troisième Oeil](https://www.letogames.com/).
 Le livre est disponible en version PDF dans [la boutique](https://www.letogames.com/page-d-articles/souscription-yuigahama-bad-seeds-pdf).
 
 

@@ -1,0 +1,23 @@
+<div class="evo_div">
+    <div class="flexcol">
+        <label class="traits_title_label">{{localize 'yuigahama.evolution.tab_title'}}</label>
+        {{#each actor.system.traits as |trait key|}}
+        <div class="flexrow flex-group-center">
+            <label data-use="{{trait.use}}" data-label="{{key}}" data-tooltip="{{trait.label}}">{{trait.name}} </label>
+            <input class="traits_evo_input" type="number" name="system.traits.{{key}}.use" value="{{trait.use}}" min="0" data-dtype="Number"/>
+            <div class="icon-container">
+                <div class="button_ic button_ic-left" data-trait="{{key}}" data-operation="minus">-</div>
+                <div>
+                    <img class="evo_icon" src="systems/yuigahama/assets/img/traits/{{key}}.jpg" alt="{{key}}" id="myImage{{key}}">
+                </div>
+                <div class="button_ic button_ic-right" data-trait="{{key}}" data-operation="plus">+</div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div>
+        <a class="ybs-button-evo-reinit">
+            {{localize "yuigahama.evolution.reinit"}}
+        </a>
+    </div>
+</div>

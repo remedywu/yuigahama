@@ -1,0 +1,91 @@
+{
+  "yuigahama" : {
+    "traits": {
+      "choushi": "CHOUSHI",
+      "kiyousa": "KIYOUSA",
+      "chisei": "CHISEI",
+      "yuuben": "YUUBEN",
+      "chikaku": "CHIKAKU",
+      "nintai": "NINTAI"
+    },
+    "attributs": {
+      "name": "Nom",
+      "attribute": "Attribut",
+      "create": "Créer un attribut",
+      "edit": "Editer",
+      "delete": "Supprimer"
+    },
+    "main": {
+      "traits": "Traits",
+      "attributs": "Attributs",
+      "name": {
+        "placeholder" : "Nom du personnage"
+      }
+    },
+    "dialog": {
+      "close": "Fermer",
+      "launch": "Lancer"
+    },
+    "dice": {
+      "roll": "Faire un test de",
+      "roll_with_tokens": "Choisissez le nombre de jeton Unmei à utiliser",
+      "with": " avec xx jetons Unmei",
+      "force": " (Forcer le destin)",
+      "force_details": " (Forcer le destin) avec xx jetons Unmei",
+      "details": "Détails:",
+      "reroll": " (S'entêter)",
+      "critical": {
+        "success": "(-1 jeton Unmei)",
+        "failure" : "Si échec critique (+1 jeton Unmei)"
+      }
+    },
+    "chat": {
+      "reroll": "S'entêter",
+      "success": "REUSSITE",
+      "failure": "ECHEC",
+      "success_critical": "Réussite Critique",
+      "message_success_critical" : "Réussite Critique !",
+      "message_luckyseven" : "Invocation des 7 divinités de la chance !"
+    },
+    "health": {
+      "life": "Points de vie"
+    },
+    "tokens" : {
+      "tokens":"Jetons Unmei",
+      "luckyseven" : "Invoquer les 7 divinités"
+    },
+    "tab": {
+      "first": "Traits et Attributs",
+      "second": "Description",
+      "third": "Evolution",
+      "fourth": "Paramètres"
+    },
+    "description": {
+      "tab_title": "Détails (historique, description physique, équipement, indices découverts)"
+    },
+    "parameters": {
+      "tab_title": "Paramètres de la feuille de personnage"
+    },
+    "evolution": {
+      "tab_title": "Utilisation des traits",
+      "reinit": "Remettre à zéro les statistiques"
+    },
+    "item": {
+      "name" : {
+        "placeholder": "Nom"
+      },
+      "subtitle" : {
+        "placeholder": "Sous Titre"
+      },
+      "description": "Description",
+      "regles_opt": "Règles Optionnelles"
+    }
+  },
+  "SETTINGS": {
+    "None": "Aucune option",
+    "useFontSpecial": {
+      "text": "Utiliser une police de caractère spéciale",
+      "hint": "Le système sera rechargé automatiquement après avoir sauvegardé."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<form class="{{cssClass}} {{object.sheettype}}" autocomplete="off">
+    <div class="dialog-area">
+        <div class="infobox headline">{{localize "yuigahama.dice.roll"}} {{label}}</div>
+        <div class="infobox">
+            {{#if (gt actorData.token.value 0)}}
+            <div class=headline">{{localize "yuigahama.dice.roll_with_tokens"}}</div>
+            <div>
+                <img class="dialog_img" src="systems/yuigahama/assets/img/sheet/jetons_unmei.png" alt="{{localize 'yuigahama.tokens.tokens'}}">
+            </div>
+            <div class="span_slider_div">
+                <div class="flexrow">
+                    {{#numLoop tokenLoop tokenMax}}
+                        {{#if (eq this.index this.max)}}
+                        <span class="span_slider">{{this.index}}</span>
+                        {{else}}
+                        <span class="span_slider">{{this.index}}</span>
+                        <span class="span_slider"></span>
+                        {{/if}}
+
+                    {{/numLoop}}
+                </div>
+                <input type="range" name="actorData.token.use" min="0" max="{{tokenMax}}" value="{{actorData.token.use}}" class="slider">
+            </div>
+            {{/if}}
+        </div>
+        <div class="flex-group-center">
+            <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "yuigahama.dialog.launch"}}</button>
+            <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "yuigahama.dialog.close"}}</button>
+        </div>
+    </div>
+</form>

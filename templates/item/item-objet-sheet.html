@@ -1,0 +1,20 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'yuigahama.item.name.placeholder'}}"/></h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="flexcol">
+        <div class="descriptionTitle">
+            {{localize 'yuigahama.tab.second'}}
+        </div>
+
+        <fieldset class="description">
+            <legend class="text-block-header"></legend>
+            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+        </fieldset>
+    </section>
+</form>

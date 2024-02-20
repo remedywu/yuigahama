@@ -1,0 +1,33 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <h2 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'yuigahama.main.name.plaeholder'}}"/></h2>
+    </div>
+  </header>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    <!-- Menu -->
+    <div class="navigation pullLeft">
+      {{> "systems/yuigahama/templates/actor/personnage/navigation.html"}}
+    </div>
+
+    <!-- Center Tabs -->
+    <div class="tab core sheet-inner-area" data-group="primary" data-tab="core">
+      {{> "systems/yuigahama/templates/actor/personnage/main.html"}}
+    </div>
+
+    <div class="tab core sheet-inner-area" data-group="primary" data-tab="description">
+      {{> "systems/yuigahama/templates/actor/personnage/description.html"}}
+    </div>
+
+    <div class="tab core sheet-inner-area" data-group="primary" data-tab="evolution">
+      {{> "systems/yuigahama/templates/actor/personnage/evolution.html"}}
+    </div>
+
+  </section>
+
+
+</form>

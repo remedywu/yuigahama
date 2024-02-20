@@ -1,0 +1,233 @@
+.yuigahama-roll {
+  cursor:pointer;
+
+  div {
+
+    &.dice-flavor {
+      font-size:20px;
+      padding: 1px;
+      text-align: center;
+    }
+
+    &.dice-formula {
+      border-radius:0;
+      box-shadow: 1px 1px 2px $black;
+      margin: 10px;
+      padding: 5px;
+    }
+
+    &.dice-total {
+      display:block;
+      width:100%;
+      background: rgba(0, 0, 0, 0.1);
+      border: 1px solid $lightGrey;
+      box-shadow: 1px 1px 2px $black;
+
+      h4.dice-total {
+        border:0;
+        background:transparent;
+        box-shadow:none;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: normal;
+        text-align: left;
+        display: block;
+        padding-left: 5px;
+        padding-right: 5px;
+        line-height: 16px;
+      }
+
+      .info-success {
+        margin: 10px;
+        padding: 5px;
+        color: $green;
+        border-radius: 0;
+        box-shadow: 1px 1px 2px RGB(43 42 51);
+        text-align: center;
+      }
+
+      .info-failure {
+        margin: 10px;
+        padding: 5px;
+        color: $red;
+        border-radius: 0;
+        box-shadow: 1px 1px 2px RGB(43 42 51);
+        text-align: center;
+      }
+    }
+
+    &.dice-explode {
+      margin-bottom:-2px;
+      border-bottom:0;
+      border-radius:0;
+    }
+
+    &.subResult {
+      div {
+        &.dice-formula {
+          border-top:0;
+          margin-bottom:0;
+
+          span {
+            &.label {
+              font-weight:bold;
+              font-variant: small-caps;
+              padding-left:5px;
+              padding-right:5px;
+            }
+
+            &.result {
+              font-weight:bold;
+              padding-left:5px;
+              padding-right:5px;
+            }
+
+            &.description {
+              display:block;
+              width:100%;
+              text-align: justify;
+              line-height: 18px;
+              font-size:13px;
+              padding-left:5px;
+              padding-right:5px;
+
+              p {
+                margin:0;
+                word-break:break-word;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.otherResults {
+      div {
+        &.dice-formula {
+          text-align: justify;
+          margin-top:5px;
+          padding-left:5px;
+          padding-right:5px;
+          line-height: 19px;
+          word-break: break-word;
+
+          div {
+            &.oneLine {
+              display:blocK;
+              width:100%;
+              text-align: center;
+              line-height: 24px;
+
+              span {
+                &.label {
+                  font-weight:bold;
+                  font-variant: small-caps;
+                  padding-left:5px;
+                  padding-right:5px;
+                }
+              }
+            }
+          }
+
+          >span {
+            &.label {
+              font-size:13px;
+            }
+          }
+        }
+
+      }
+    }
+
+    &.oneLine {
+      display:flex;
+      width:100%;
+      justify-content: space-between;
+    }
+
+    &.style {
+      margin-bottom:5px;
+
+      div.dice-total {
+        font-size:14px;
+      }
+    }
+
+    &.atkTouche {
+      div.dice-formula {
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border-color: $white;
+
+        &::before {
+          content: attr(title);
+          position: absolute;
+          left: 0;
+          top: -5px;
+          background: white;
+          border-radius: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+          width: 75px;
+          word-break: keep-all;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+
+  span {
+    &.caracs {
+      word-break: break-word;
+    }
+
+    &.explode {
+      display:block;
+      width:100%;
+      text-align: center;
+      color:$green;
+      font-variant: small-caps;
+      font-size:18px;
+    }
+
+    &.epicFail {
+      display:block;
+      width:100%;
+      text-align: center;
+      color:$red;
+      font-variant: small-caps;
+      font-size:18px;
+    }
+
+    &.dice-success {
+      width:100%;
+      color:$green;
+      font-size: 30px;
+    }
+
+    &.dice-fail {
+      width:100%;
+      color:$red;
+      font-size: 30px;
+    }
+
+    &.fullLine {
+      display:block;
+      width:100%;
+    }
+  }
+
+  button {
+    &.btn {
+      background: rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 1px 4px $black;
+
+      &:hover {
+        background:$black;
+        color:$lightGrey;
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "yuigahama" : {
+    "traits": {
+      "choushi": "CHOUSHI",
+      "kiyousa": "KIYOUSA",
+      "chisei": "CHISEI",
+      "yuuben": "YUUBEN",
+      "chikaku": "CHIKAKU",
+      "nintai": "NINTAI"
+    },
+    "attributs": {
+      "name": "Name",
+      "attribute": "Attribute",
+      "create": "Create an attribute",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "main": {
+      "traits": "Features",
+      "attributs": "Attributes",
+      "name": {
+        "placeholder" : "Name of the character"
+      }
+    },
+    "dialog": {
+      "close": "Close",
+      "launch": "Launch"
+    },
+    "dice": {
+      "roll": "Make a test of",
+      "roll_with_tokens": "Choose the number of Unmei tokens to use",
+      "with": " with xx Unmei tokens",
+      "force": " (Forcer destiny)",
+      "force_details": " (Forcer destiny) avec xx Unmei tokens",
+      "details": "Détails:",
+      "reroll": " (To persist)",
+      "critical": {
+        "success": "(-1 Unmei token)",
+        "failure" : "If critical failure (+1 Unmei token)"
+      }
+    },
+    "chat": {
+      "reroll": "To persist",
+      "success": "SUCCESS",
+      "failure": "FAILURE",
+      "success_critical": "Critical Success",
+      "message_success_critical" : "Critical Success !",
+      "message_luckyseven" : "Invocation of the 7 deities of luck !"
+    },
+    "health": {
+      "life": "Life points"
+    },
+    "tokens" : {
+      "tokens":"Unmei Tokens",
+      "luckyseven" : "Invocation of the 7 deities"
+    },
+    "tab": {
+      "first": "Features and Attributes",
+      "second": "Description",
+      "third": "Evolution",
+      "fourth": "Parameters"
+    },
+    "description": {
+      "tab_title": "Details (history, physical description, equipment, clues discovered)"
+    },
+    "parameters": {
+      "tab_title": "Character Sheet Settings"
+    },
+    "evolution": {
+      "tab_title": "Using features",
+      "reinit": "Reset statistics"
+    },
+    "item": {
+      "name" : {
+        "placeholder": "Name"
+      },
+      "subtitle" : {
+        "placeholder": "Subtitle"
+      },
+      "description": "Description",
+      "regles_opt": "Optional Rules"
+    }
+  },
+  "SETTINGS": {
+    "None": "No option",
+    "useFontSpecial": {
+      "text": "Use a special font",
+      "hint": "The system will automatically reload after saving."
+    }
+  }
+}

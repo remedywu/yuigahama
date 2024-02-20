@@ -1,0 +1,80 @@
+{
+  "id": "yuigahama",
+  "title": "Yuigahama Bad Seeds",
+  "description": "Yuigahama Bad Seeds, jeu de rôle de Frederic Bessy aux Editions du Troisième Oeil, système pour Foundry VTT",
+  "authors": [
+    {
+      "name": "JM",
+      "discord": "remedywu"
+    }
+  ],
+  "url": "https://github.com/remedywu/yuigahama",
+  "license": "license.md",
+  "readme": "README.md",
+  "bugs": "Replace this with a link to file issues or tickets",
+  "changelog": "CHANGELOG.md",
+  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
+  "download": "This must link to a .zip file of the current version",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": 11,
+    "verified": "11.315"
+  },
+  "socket": false,
+  "esmodules": ["module/yuigahama.mjs"],
+  "styles": ["css/yuigahama.css",
+    "css/main.css",
+    "css/chat.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "attributs",
+      "label": "Attributs",
+      "path": "packs/attributs.db",
+      "type": "Item",
+      "system": "yuigahama"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Yuigahama Bad Seeds",
+      "color": "#b7d7ee",
+      "sorting": "m",
+      "packs" : [
+        "attributs"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/yuigahama/assets/img/ui/background.webp",
+      "thumbnail": "systems/yuigahama/assets/img/ui/background.webp"
+    },
+    {
+      "type": "screenshot",
+      "url": "",
+      "caption": "Fiche de Personnage"
+    },
+    {
+      "type": "screenshot",
+      "url": "",
+      "caption": "Compendium des Attributs"
+    }
+  ],
+  "background": "systems/yuigahama/assets/img/ui/ecran.jpg",
+  "gridDistance": 5,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "health"
+}

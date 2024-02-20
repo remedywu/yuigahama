@@ -1,0 +1,618 @@
+/* Styles limited to yuigahama sheets */
+.yuigahama {
+    width: fit-content;
+}
+
+.yuigahama .sheet-tabs {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+}
+.yuigahama .sheet-body{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.yuigahama .sheet-body .profile-img {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px;
+    height: 220px;
+    width: 220px;
+    margin-right: 10px;
+}
+.yuigahama .sheet-body .header-fields {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.yuigahama .sheet-body h2.charname {
+    height: 50px;
+    padding: 0;
+    margin: 5px 0;
+    border-bottom: 0;
+}
+.yuigahama .sheet-body h2.charname input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.yuigahama .sheet-body-item{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.yuigahama .tox .tox-edit-area {
+    padding: 0 8px;
+}
+.yuigahama .items-header {
+    height: 28px;
+    margin: 2px 0;
+    padding: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px groove #eeede0;
+    font-weight: bold;
+}
+.yuigahama .items-header > * {
+    font-size: 14px;
+    text-align: center;
+}
+.yuigahama .items-header .item-name {
+    font-weight: bold;
+    padding-left: 5px;
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.yuigahama .items-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    color: #444;
+}
+.yuigahama .items-list .item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.yuigahama .items-list .item-name {
+    -webkit-box-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    margin: 0;
+    overflow: hidden;
+    font-size: 13px;
+    text-align: left;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.yuigahama .items-list .item-name h3, .yuigahama .items-list .item-name h4 {
+    margin: 0;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+.yuigahama .items-list .item-controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+.yuigahama .items-list .item-controls a {
+    font-size: 12px;
+    text-align: center;
+    margin: 0 6px;
+}
+.yuigahama .items-list .item {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 2px;
+    border-bottom: 1px solid #c9c7b8;
+}
+.yuigahama .items-list .item:last-child {
+    border-bottom: none;
+}
+.yuigahama .items-list .item .item-name {
+    color: #191813;
+}
+.yuigahama .items-list .item .item-name .item-image {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    background-size: 30px;
+    border: none;
+    margin-right: 5px;
+}
+.yuigahama .items-list .item-prop {
+    text-align: center;
+    border-left: 1px solid #c9c7b8;
+    border-right: 1px solid #c9c7b8;
+    font-size: 12px;
+}
+.yuigahama .items-list .items-header {
+    height: 28px;
+    margin: 2px 0;
+    padding: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px groove #eeede0;
+    font-weight: bold;
+}
+.yuigahama .items-list .items-header > * {
+    font-size: 12px;
+    text-align: center;
+}
+.yuigahama .items-list .items-header .item-name {
+    padding-left: 5px;
+    text-align: left;
+}
+.yuigahama .item-formula {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 200px;
+    flex: 0 0 200px;
+    padding: 0 8px;
+}
+.yuigahama .effects .item .effect-source,
+.yuigahama .effects .item .effect-duration,
+.yuigahama .effects .item .effect-controls {
+    text-align: center;
+    border-left: 1px solid #c9c7b8;
+    border-right: 1px solid #c9c7b8;
+    font-size: 12px;
+}
+.yuigahama .effects .item .effect-controls {
+    border: none;
+}
+
+.yuigahama .textarea {
+    background: rgba(255, 255, 255, 1);
+    color: black;
+}
+
+.yuigahama .infobox {
+    margin-bottom: 5px;
+    min-height: 50px;
+    text-align: justify;
+}
+
+.yuigahama .textarea {
+    overflow-y: auto !important;
+    height: 150px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.yuigahama .textarea.small {
+    height: 50px;
+}
+
+.yuigahama .textarea {
+    border: 1px solid ;
+    border-radius: 5px;
+}
+
+.yuigahama .headlineNormal.textarea {
+    font-weight: normal;
+}
+
+.yuigahama .sheet-inner-area {
+    padding-left: 45px;
+    width: 700px;
+    min-height: 400px;
+}
+
+.yuigahama .pullLeft {
+    float: left !important;
+}
+
+.sheet-headline {
+    font-size: 20px;
+    padding-bottom: 3px;
+}
+
+.traits_input{
+    border: none !important;
+    border-bottom: 2px solid #333 !important;
+    height: 60px !important;
+    margin-left: 7px !important;
+    min-width: 60px !important;
+    font-size: 20px !important;
+}
+
+.traits_title_label{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.tokens_input{
+    width: 25px;
+}
+
+.tokens{
+    display: inline-flex;
+}
+
+.attributs{
+    width: 250px;
+    border: 1px groove #000000;
+    padding: 3px;
+}
+
+.healthBox {
+    padding-right: 30px;
+    flex: content;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+.resource-counter .resource-value-step {
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+    background: white;
+}
+
+/* uchimi */
+.resource-counter .resource-value-step[data-state="/"] {
+    background:
+            linear-gradient(
+                    135deg,
+                    transparent 0%,
+                    transparent 43%,
+                    black 45%,
+                    black 55%,
+                    transparent 57%,
+                    transparent 100%
+            ),
+            white;
+}
+
+/* kega */
+.resource-counter .resource-value-step[data-state="X"] {
+    background:
+            linear-gradient(
+                    45deg,
+                    transparent 0%,
+                    transparent 43%,
+                    black 45%,
+                    black 55%,
+                    transparent 57%,
+                    transparent 100%
+            ),
+            linear-gradient(
+                    135deg,
+                    transparent 0%,
+                    transparent 43%,
+                    black 45%,
+                    black 55%,
+                    transparent 57%,
+                    transparent 100%
+            ),
+            white;
+}
+
+.pointer:hover,
+.pointer:focus {
+    cursor: pointer;
+}
+
+.dialog-two-button {
+    width: 40%;
+    height: 34px;
+}
+
+.span_slider_div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.span_slider {
+    flex: 1;
+    text-align: center;
+}
+
+/* START - Navigation */
+.yuigahama-sheet .sheet-tabs {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.yuigahama-sheet a.item {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 8px;
+    border: 0;
+}
+
+.yuigahama-sheet .tabs .item.active {
+    box-shadow: 5px 5px 5px black;
+    -moz-box-shadow: 5px 5px 5px black;
+    -webkit-box-shadow: 5px 5px 5px black;
+}
+
+.navigation img.navBtn {
+    height: 30px;
+    width: 30px;
+    border: 0;
+}
+
+.secondHeadlineTabs {
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.onSide {
+    position: relative;
+    top: 300px;
+
+    transform: rotate(+90deg);
+    /* Safari */
+    -webkit-transform: rotate(+90deg);
+    /* Firefox */
+    -moz-transform: rotate(+90deg);
+    /* IE */
+    -ms-transform: rotate(+90deg);
+    /* Opera */
+    -o-transform: rotate(+90deg);
+}
+
+.descriptionTitle{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.sheet-descriptionArea {
+    height: 400px;
+    font-weight: normal;
+}
+
+/* END - Navigation */
+
+.icon_trait {
+    width: 60px !important;
+    height: 60px !important;
+    max-width: fit-content;
+}
+
+.vertical-label {
+    transform: rotate(-90deg);
+    font-size: medium;
+    padding-top: 50px;
+    padding-left: 15px;
+}
+
+.icon-container {
+    position: relative;
+    width: 100px;
+    overflow: hidden;
+    display: flex;
+    margin-left: 10px;
+}
+
+.evo_div {
+    width: fit-content;
+}
+
+.evo_icon {
+    margin-left: 15px;
+    width: 50px;
+    height: 50px;
+}
+
+.button_ic {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.button_ic-left {
+    left: 0;
+}
+.button_ic-right {
+    left: 65px;
+}
+
+/* Tooltips container */
+.window-app.sheet .window-content .tooltip:hover .tooltiptext {
+    top: 1rem;
+    left: 1rem;
+    margin: 0;
+    padding: 0.25rem;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-dotted {
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    text-align: center;
+    /* Position the tooltip text */
+    top: 20px;
+    position: absolute;
+    z-index: 1;
+
+    /* Fade in tooltip */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-roll-parameters {
+    z-index: 1000;
+    width: 200px;
+    left: -20px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: lighter;
+    padding: 3px 0;
+}
+
+.ybs-button-evo-reinit {
+    display: inline-block;
+    cursor: pointer;
+    margin: 2px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    background-color: #ea8108;
+}
+
+.ybs-button-luckyseven{
+    display: inline-block;
+    cursor: pointer;
+    margin: 2px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    height: 120px;
+    width: 100px;
+    background-image: url('../assets/img/sheet/btn_lucky.png');
+    text-align: center;
+    line-height: 35px;
+}
+
+.luckyseven_div{
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.roll_dice{
+    font-size: 30px;
+}
+
+.clearareaBox{
+    border: 1px groove #000000;
+    padding: 10px;
+}
+
+.headline {
+    font-size: 18px;
+}
+
+.dialog_img {
+    border: none !important;
+}
+
+.tox.tox-tinymce{
+    min-height: 200px !important;
+}
+
+.gridpnj{
+    display: -webkit-box;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.editor {
+    border: 2px;
+    height: 350px;
+    min-width: 150px;
+    min-height: 80px;
+    padding: 0 3px;
+}
+
+.tox .tox-edit-area {
+    padding: 0 8px;
+}
+
+.tox .tox-editor-container {
+    background: white;
+    color: white;
+}
+
+.pnjdescription {
+    width: 500px;
+}
+
+.click{
+    cursor:pointer;
+}
+
+.checkparams{
+    width: 17px !important;
+    height: 17px !important;
+    padding: 0;
+    margin:0 !important;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.labelparams{
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}

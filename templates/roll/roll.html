@@ -1,0 +1,43 @@
+<div class="dice-roll yuigahama-roll">
+    <div class="dice-flavor">{{title}}</div>
+    <div class="dice-result">
+        <div class="dice-formula">
+            <div >
+                {{#if (eq diceResult.success true)}}
+                <span class="dice-success">{{localize "yuigahama.chat.success"}}</span>
+                {{/if}}
+                {{#if (eq diceResult.success false)}}
+                <span class="dice-fail">{{localize "yuigahama.chat.failure"}}</span>
+                {{/if}}
+            </div>
+        </div>
+
+        {{{tooltip}}}
+            {{#if (eq diceResult.success false)}}
+            {{#if (eq canUseToken true)}}
+            {{#if (eq diceResult.type "roll")}}
+            <div class="reroll">
+                <a class="ybs-button-reroll flex-grow-0">
+                    {{localize "yuigahama.chat.reroll"}}
+                </a>
+            </div>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+
+            {{#if (eq diceResult.result.value 6)}}
+            {{#if (eq canUseToken true)}}
+            <div>
+                <a class="ybs-button-success-critical flex-grow-0" data-tooltip="{{info}}">
+                    {{localize "yuigahama.chat.success_critical"}}
+                </a>
+            </div>
+            {{/if}}
+            {{/if}}
+    </div>
+</div>
+<div class="tray-roll-area">
+    <i class="fa-solid fa-dice-{{diceResult.result.valueName}} roll_dice"></i>
+</div>
+
+
