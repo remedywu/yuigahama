@@ -14,7 +14,7 @@
   "bugs": "https://github.com/remedywu/yuigahama/issues",
   "changelog": "https://raw.githubusercontent.com/remedywu/yuigahama/master/CHANGELOG.md",
   "manifest": "https://raw.githubusercontent.com/remedywu/yuigahama/master/system.json",
-  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.0.1.zip",
+  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.0.2.zip",
   "version": "1.0.2",
   "compatibility": {
     "minimum": 11,
