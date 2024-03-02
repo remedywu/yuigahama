@@ -84,8 +84,7 @@ export class yuigahamaRoll extends Roll {
     }
 
     /** @override */
-    async toMessage(messageData={}, {rollMode, create=true}={}) {
-        //ChatMessage.applyRollMode(messageData, "roll");
+    async toMessage(messageData={}) {
         let message = await ChatMessage.create(messageData);
 
         await ChatManager.setMessageActor(message, this.actor, CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER);
@@ -134,5 +133,16 @@ export class yuigahamaRoll extends Roll {
         };
 
         return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, tooltipData);
+    }
+
+    /**
+     * For provide error from interpretation of Roll subclass in chatMessage
+     * @override
+     */
+    toJSON() {
+        const json = super.toJSON();
+        json.class = yuigahamaRoll; //!IMPORTANT
+
+        return json;
     }
 }

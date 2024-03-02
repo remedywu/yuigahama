@@ -100,7 +100,7 @@ export class ChatManager {
 
         const chatData = {
             type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-            rolls: roll,
+            rolls: [roll.toJSON()],
             content: html,
             speaker: ChatMessage.getSpeaker({ actor: chatMsg.flags.actor }),
             rollMode: game.settings.get("core", "rollMode")

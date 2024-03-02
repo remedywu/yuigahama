@@ -16,7 +16,7 @@ export async function rollTheDice(rollData){
 
     const chatData = {
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-        rolls: roll,
+        rolls: [roll.toJSON()],
         content: html,
         speaker: ChatMessage.getSpeaker({ actor: rollData.actor }),
         rollMode: game.settings.get("core", "rollMode"),
