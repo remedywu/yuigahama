@@ -8,7 +8,7 @@ export class yuigahamaActorSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["yuigahama yuigahama-sheet"],
       width: 850,
       height: 770,
@@ -141,7 +141,7 @@ export class yuigahamaActorSheet extends ActorSheet {
     // Get the type of item to create.
     const type = header.dataset.type;
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    const data = foundry.utils.duplicate(header.dataset);
     const name = `New ${type.capitalize()}`;
     const itemData = {
       name: name,
@@ -199,7 +199,7 @@ export class yuigahamaActorSheet extends ActorSheet {
     const oldState = element.dataset.state || "";
     const dataset = element.dataset;
 
-    const actorData = duplicate(this.actor);
+    const actorData = foundry.utils.duplicate(this.actor);
 
     if (oldState === "") {
       actorData.system.life.values[dataset.index] = 1;
@@ -235,7 +235,7 @@ export class yuigahamaActorSheet extends ActorSheet {
     let trait = $(event.currentTarget).attr('data-trait');
     let evolution = ($(event.currentTarget).attr('data-operation')==="plus")? 20 : -20;
 
-    const actorData = duplicate(this.actor);
+    const actorData = foundry.utils.duplicate(this.actor);
     let visibilityPercentage = actorData.system.traits[trait.toLowerCase()].evo;
     visibilityPercentage = visibilityPercentage+evolution;
     if (visibilityPercentage >100 || visibilityPercentage <0) return;
@@ -259,7 +259,7 @@ export class yuigahamaActorSheet extends ActorSheet {
   async _onReinit(event){
     event.preventDefault();
 
-    const actorData = duplicate(this.actor);
+    const actorData = foundry.utils.duplicate(this.actor);
     for (let [key] of Object.entries(actorData.system.traits)) {
       actorData.system.traits[key].use = 0;
     }
@@ -287,7 +287,7 @@ export class yuigahamaActorSheet extends ActorSheet {
     const html = await renderTemplate(yuigahamaActorSheet.SEVEN_LUCKY_TEMPLATE, templateData);
 
     ChatMessage.create({
-      type: CONST.CHAT_MESSAGE_TYPES.OOC,
+      type: CONST.CHAT_MESSAGE_STYLES.OOC,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       sound: CONFIG.sounds.notification,
       content: html

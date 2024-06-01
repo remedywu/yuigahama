@@ -87,7 +87,7 @@ export class yuigahamaRoll extends Roll {
     async toMessage(messageData={}) {
         let message = await ChatMessage.create(messageData);
 
-        await ChatManager.setMessageActor(message, this.actor, CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER);
+        await ChatManager.setMessageActor(message, this.actor, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER);
     }
 
     /**

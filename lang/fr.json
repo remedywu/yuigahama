@@ -1,4 +1,14 @@
 {
+  "TYPES": {
+    "Actor" : {
+      "personnage": "Personnage",
+      "pnj": "PNJ"
+    },
+    "Item" : {
+      "objet" : "Objet",
+      "attribut" : "Attribut"
+    }
+  },
   "yuigahama" : {
     "traits": {
       "choushi": "CHOUSHI",

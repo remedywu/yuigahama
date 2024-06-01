@@ -37,5 +37,8 @@ Toute la propriété intellectuelle leur appartient, ce système est une adpatat
 ## License
 L'ensemble du code est sous licence Creative Commons CC BY-NC-SA 4.0
 
+## En Plus
+Omedetou Frederic Bessy et les Editions du Troisième Oeil car Yuigahama Bad Seeds a gagné le prix Roliste 2023 du meilleur JDR Francophone !
+
 
 

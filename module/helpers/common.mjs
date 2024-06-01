@@ -15,7 +15,7 @@ export async function rollTheDice(rollData){
     await rollData.actor.updateEvolutionStats(rollData.trait);
 
     const chatData = {
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        //type: CONST.CHAT_MESSAGE_STYLES.ROLL,
         rolls: [roll.toJSON()],
         content: html,
         speaker: ChatMessage.getSpeaker({ actor: rollData.actor }),

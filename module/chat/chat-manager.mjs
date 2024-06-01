@@ -99,7 +99,7 @@ export class ChatManager {
         let html = await roll.render();
 
         const chatData = {
-            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+            //type: CONST.CHAT_MESSAGE_STYLES.ROLL,
             rolls: [roll.toJSON()],
             content: html,
             speaker: ChatMessage.getSpeaker({ actor: chatMsg.flags.actor }),
@@ -132,7 +132,7 @@ export class ChatManager {
         const html = await renderTemplate(ChatManager.CRTICAL_SUCCESS_TEMPLATE, templateData);
 
         ChatMessage.create({
-            type: CONST.CHAT_MESSAGE_TYPES.OOC,
+            type: CONST.CHAT_MESSAGE_STYLES.OOC,
             speaker: ChatMessage.getSpeaker({ actor: actor }),
             content: html
         });
@@ -151,7 +151,7 @@ export class ChatManager {
             await chatMsg.setFlag("yuigahama", MESSAGE_OWNING_ACTOR, {
                 actorId: actor.id,
                 tokenId: actor.token?.id,
-                right: right
+                right: right,
             });
         }
     }

@@ -19,7 +19,7 @@ export class DialogRoll extends FormApplication {
      * @returns {Object}
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["yuigahama yuigahama-dialog general-dialog"],
             template: "systems/yuigahama/templates/dialogs/dialog-roll.html",
             closeOnSubmit: false,

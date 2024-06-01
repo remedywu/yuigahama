@@ -5,7 +5,7 @@ export class yuigahamaPNJSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
-       return mergeObject(super.defaultOptions, {
+       return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["yuigahama yuigahama-sheet"],
             width: 1100,
             height: 750,
@@ -110,7 +110,7 @@ export class yuigahamaPNJSheet extends ActorSheet {
         const oldState = element.dataset.state || "";
         const dataset = element.dataset;
 
-        const actorData = duplicate(this.actor);
+        const actorData = foundry.utils.duplicate(this.actor);
 
         if (oldState === "") {
             actorData.system.life.values[dataset.index] = 1;

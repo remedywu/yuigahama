@@ -11,7 +11,7 @@ export class yuigahamaActor extends Actor {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["yuigahama"],
       template: "systems/yuigahama/templates/actor/actor-personnage.sheet",
       tabs: [{
@@ -62,7 +62,7 @@ export class yuigahamaActor extends Actor {
    */
   async updateTokenUse(countTokens){
     if (countTokens <=0) return ;
-    const actorData = duplicate(this);
+    const actorData = foundry.utils.duplicate(this);
     actorData.system.token.value -= countTokens;
     if (actorData.system.token.value<0) actorData.system.token.value =0;
 
@@ -75,7 +75,7 @@ export class yuigahamaActor extends Actor {
    * @returns {Promise<void>}
    */
   async updateEvolutionStats(traitLabel){
-    const actorData = duplicate(this);
+    const actorData = foundry.utils.duplicate(this);
     for (let traitObj in actorData.system.traits) {
       if (traitObj===traitLabel.toLowerCase()){
         actorData.system.traits[traitObj].use +=1;

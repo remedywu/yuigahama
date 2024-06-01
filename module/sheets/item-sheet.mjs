@@ -2,7 +2,7 @@ export class yuigahamaItemSheet extends ItemSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["yuigahama", "sheet", "item"],
       width: 550,
       height: 600,
