@@ -14,11 +14,12 @@
   "bugs": "https://github.com/remedywu/yuigahama/issues",
   "changelog": "https://raw.githubusercontent.com/remedywu/yuigahama/master/CHANGELOG.md",
   "manifest": "https://raw.githubusercontent.com/remedywu/yuigahama/master/system.json",
-  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.0.3.zip",
-  "version": "1.0.3",
+  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.0.4.zip",
+  "version": "1.0.4",
   "compatibility": {
     "minimum": 11,
-    "verified": "12.325"
+    "verified": "12.327",
+    "maximum": ""
   },
   "socket": false,
   "esmodules": ["module/yuigahama.mjs"],

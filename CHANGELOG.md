@@ -7,4 +7,7 @@
 - Correction for Interpretation of dice in chatMesssage
 
 ## 1.0.3
-- Compatibilité FoundryVTT Version 12
+- Compatibility FoundryVTT Version 12
+
+## 1.0.4
+- Set maximum Version Empty
