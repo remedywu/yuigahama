@@ -54,6 +54,7 @@ export class yuigahamaRoll extends Roll {
                 details += (this.tokenUse>0)? "+"+this.tokenUse.toString() : "";
                 details +="="+total;
             }
+
             this.diceResult.success = success;
             this.diceResult.traitValue = this.value;
             this.diceResult.trait = this.trait;
@@ -63,6 +64,7 @@ export class yuigahamaRoll extends Roll {
         });
 
         let title = this.diceResult.trait;
+
         if (this.tokenUse >0){
             title += (this.type === "roll")? `${game.i18n.localize("yuigahama.dice.force")}` : `${game.i18n.localize("yuigahama.dice.reroll")}`;
         }
@@ -80,14 +82,14 @@ export class yuigahamaRoll extends Roll {
             tooltip: isPrivate ? "" : await this.getTooltip(),
         };
 
-        return renderTemplate(template, templateData);
+        return foundry.applications.handlebars.renderTemplate(template, templateData);
     }
 
     /** @override */
     async toMessage(messageData={}) {
         let message = await ChatMessage.create(messageData);
 
-        await ChatManager.setMessageActor(message, this.actor, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER);
+        await ChatManager.setMessageActor(message, this.actor, CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,messageData);
     }
 
     /**
@@ -132,7 +134,7 @@ export class yuigahamaRoll extends Roll {
             info: this.info,
         };
 
-        return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, tooltipData);
+        return foundry.applications.handlebars.renderTemplate(this.constructor.TOOLTIP_TEMPLATE, tooltipData);
     }
 
     /**

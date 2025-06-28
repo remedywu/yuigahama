@@ -2,7 +2,7 @@ import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/ef
 import {DialogRoll} from "../dialogs/dialog-roll.mjs";
 import {rollTheDice, changeLifeCount, getDefaultImg} from "../helpers/common.mjs";
 
-export class yuigahamaActorSheet extends ActorSheet {
+export class yuigahamaActorSheet extends foundry.appv1.sheets.ActorSheet {
 
   static SEVEN_LUCKY_TEMPLATE = "systems/yuigahama/templates/roll/sevenlucky.html";
 
@@ -167,7 +167,7 @@ export class yuigahamaActorSheet extends ActorSheet {
 
     //Dialog before launch the dice
     if (dataset.value){
-     //If tokens display dialog
+      //If tokens display dialog
       if (this.actor.system.token.value >0){
         const myDialog = new DialogRoll(this.actor,dataset);
         myDialog.render(true);
@@ -284,7 +284,7 @@ export class yuigahamaActorSheet extends ActorSheet {
       }
     };
 
-    const html = await renderTemplate(yuigahamaActorSheet.SEVEN_LUCKY_TEMPLATE, templateData);
+    const html = await foundry.applications.handlebars.renderTemplate(yuigahamaActorSheet.SEVEN_LUCKY_TEMPLATE, templateData);
 
     ChatMessage.create({
       type: CONST.CHAT_MESSAGE_STYLES.OOC,

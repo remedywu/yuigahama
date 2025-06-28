@@ -1,11 +1,11 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
 import {rollTheDice, changeLifeCount} from "../helpers/common.mjs";
 
-export class yuigahamaPNJSheet extends ActorSheet {
+export class yuigahamaPNJSheet extends foundry.appv1.sheets.ActorSheet {
 
     /** @override */
     static get defaultOptions() {
-       return foundry.utils.mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["yuigahama yuigahama-sheet"],
             width: 1100,
             height: 750,
@@ -85,15 +85,15 @@ export class yuigahamaPNJSheet extends ActorSheet {
 
         //Dialog before launch the dice
         if (dataset.value){
-                //Infos for the dice
-                const rollData = {
-                    actor: this.actor,
-                    tokenUse : 0,
-                    trait: dataset.label,
-                    value: parseInt(dataset.value),
-                    type: "roll",
-                }
-                await rollTheDice(rollData);
+            //Infos for the dice
+            const rollData = {
+                actor: this.actor,
+                tokenUse : 0,
+                trait: dataset.label,
+                value: parseInt(dataset.value),
+                type: "roll",
+            }
+            await rollTheDice(rollData);
         }
     }
 

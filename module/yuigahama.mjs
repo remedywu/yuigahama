@@ -34,18 +34,18 @@ Hooks.once('init', async function() {
   CONFIG.Item.documentClass = yuigahamaItem;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("personnage", yuigahamaActorSheet, {
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet("personnage", yuigahamaActorSheet, {
     types: ["personnage"],
     makeDefault: true
   });
 
-  Actors.registerSheet("pnj", yuigahamaPNJSheet, {
+  foundry.documents.collections.Actors.registerSheet("pnj", yuigahamaPNJSheet, {
     types: ["pnj"],
     makeDefault: true
   });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("yuigahama", yuigahamaItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet("yuigahama", yuigahamaItemSheet, { makeDefault: true });
 
   // Register custom system settings
   RegisterSettings();

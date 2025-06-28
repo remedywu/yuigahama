@@ -51,12 +51,22 @@ export class ChatManager {
 
     /**
      * Get Message chat with an event
-     * @param  {Event} event
+     * @param {Event} event
      * @returns {*}
      */
     static getChatMessage(event) {
         const chatMessageId = $(event.currentTarget).closest('.chat-message').attr('data-message-id');
-        return game.messages.get(chatMessageId);
+        const flavorText = $(event.currentTarget)
+            .closest('.chat-message')
+            .find('.dice-roll.yuigahama-roll .dice-flavor')
+            .text()
+            .trim();
+
+        return {
+            message: game.messages.get(chatMessageId),
+            trait: flavorText,
+            value : 1,
+        };
     }
 
     /**
@@ -80,17 +90,29 @@ export class ChatManager {
 
 
     /**
+     * Take the value of the Trait in the actor
+     * @param {object} actor
+     * @param {string} traitName
+     * @returns {*|number}
+     */
+    static getTraitValue(actor, traitName) {
+        return actor.system?.traits?.[traitName.toLowerCase()]?.value ?? 0;
+    }
+
+    /**
      * onReRoll display message
      * @param {object} chatMsg
      * @returns {Promise<void>}
      */
     static async onReRoll(chatMsg) {
+        const value = this.getTraitValue(chatMsg.message.flags.actor, chatMsg.trait);
+
         //Infos for the dice
         const rollData = {
-            actor: chatMsg.flags.actor,
+            actor: chatMsg.message.flags.actor,
             tokenUse : 0,
-            trait: chatMsg.flags.trait,
-            value: chatMsg.flags.value,
+            trait: chatMsg.trait,
+            value: value,
             type: "reroll",
         }
 
@@ -102,15 +124,25 @@ export class ChatManager {
             //type: CONST.CHAT_MESSAGE_STYLES.ROLL,
             rolls: [roll.toJSON()],
             content: html,
-            speaker: ChatMessage.getSpeaker({ actor: chatMsg.flags.actor }),
-            rollMode: game.settings.get("core", "rollMode")
+            speaker: ChatMessage.getSpeaker({ actor: rollData.actor }),
+            rollMode: game.settings.get("core", "rollMode"),
+            sound: CONFIG.sounds.dice,
+            flags: {
+                trait: rollData.trait,
+                value: rollData.value,
+                actor: rollData.actor,
+            }
         };
 
         await roll.toMessage(chatData);
 
-        let actor = game.actors.get(chatMsg.flags.actor._id);
+        let actor = game.actors.get(chatMsg.message.flags.actor._id);
         await actor.updateTokenUse(1);
-        await actor.updateEvolutionStats(chatMsg.flags.trait);
+
+        //Fixe Temporaire
+        if (chatMsg.message.flags.trait.length > 0) {
+            await actor.updateEvolutionStats(chatMsg.message.flags.trait);
+        }
     }
 
     /**
@@ -119,7 +151,7 @@ export class ChatManager {
      * @returns {Promise<void>}
      */
     static async onSuccessCritical(chatMsg){
-        let actor = game.actors.get(chatMsg.flags.actor._id);
+        let actor = game.actors.get(chatMsg.message.flags.actor._id);
 
         const templateData = {
             data: {
@@ -129,7 +161,7 @@ export class ChatManager {
             }
         };
 
-        const html = await renderTemplate(ChatManager.CRTICAL_SUCCESS_TEMPLATE, templateData);
+        const html = await foundry.applications.handlebars.renderTemplate(ChatManager.CRTICAL_SUCCESS_TEMPLATE, templateData);
 
         ChatMessage.create({
             type: CONST.CHAT_MESSAGE_STYLES.OOC,
@@ -144,14 +176,17 @@ export class ChatManager {
      * @param {object} chatMsg
      * @param {yuigahamaActor} actor
      * @param {int} right
+     * @param {object} data
      * @returns {Promise<void>}
      */
-    static async setMessageActor(chatMsg, actor, right = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    static async setMessageActor(chatMsg, actor, right = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,data) {
         if (actor) {
             await chatMsg.setFlag("yuigahama", MESSAGE_OWNING_ACTOR, {
                 actorId: actor.id,
                 tokenId: actor.token?.id,
                 right: right,
+                trait: data?.flags?.trait,
+                value: data?.flags?.value,
             });
         }
     }

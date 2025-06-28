@@ -1,4 +1,4 @@
-export class yuigahamaItemSheet extends ItemSheet {
+export class yuigahamaItemSheet extends foundry.appv1.sheets.ItemSheet {
 
   /** @override */
   static get defaultOptions() {
