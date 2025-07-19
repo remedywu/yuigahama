@@ -1,9 +1,11 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<div class="{{cssClass}} {{actor.type}} flexcol" >
 
   {{!-- Sheet Header --}}
   <header class="sheet-header">
     <div class="header-fields">
-      <h2 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'yuigahama.main.name.placeholder'}}"/></h2>
+      <h2 class="charname">
+        <input name="name" type="text" value="{{document.name}}" placeholder="{{localize 'yuigahama.main.name.placeholder'}}"/>
+      </h2>
     </div>
   </header>
 
@@ -15,7 +17,7 @@
     </div>
 
     <!-- Center Tabs -->
-    <div class="tab core sheet-inner-area" data-group="primary" data-tab="core">
+    <div class="tab core sheet-inner-area active" data-group="primary" data-tab="core">
       {{> "systems/yuigahama/templates/actor/personnage/main.html"}}
     </div>
 
@@ -29,5 +31,4 @@
 
   </section>
 
-
-</form>
+</div>

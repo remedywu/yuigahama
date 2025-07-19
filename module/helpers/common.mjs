@@ -62,8 +62,54 @@ export function changeLifeCount(html,context){
  * Change font of the sheet
  * @param sheet
  */
-export function changeFont(sheet){
-    let useHenshin = game.settings.get(CONFIG.yuigahama.moduleName, "useFontSpecial");
-    sheet.element[0].style.fontFamily =(useHenshin)? "henshin" :"Roboto";
+export function changeFont(sheet) {
+    const useHenshin = game.settings.get(CONFIG.yuigahama.moduleName, "useFontSpecial");
+    const newFont = useHenshin ? "henshin" : "Roboto";
+    const currentFont = sheet.element[0].style.fontFamily;
+
+    // Si la font est déjà utilisée, ne rien faire
+    if (currentFont === newFont) return;
+
+    sheet.element[0].style.fontFamily = newFont;
+}
+
+/**
+ *
+ * Manage and clean tabs
+ * @param {object} html
+ * @param {object} tabs
+ * @param {boolean} isItem
+ */
+export function manageTabs(html, tabs,isItem){
+    for (const tab of Object.values(tabs)) {
+        const selector = `.item[data-tab="${tab.id}"][data-group="${tab.group}"]`;
+        const el = html.find(selector);
+
+        (tab.active)? el.addClass("active") : el.removeClass("active");
+    }
+
+    // 1. Détermine l'onglet actif (depuis tabGroups ou stock temporaire)
+    const currentTab = _getCurrentTab(html, isItem) || this.tabGroups?.primary || 'core';
+
+    // 2. Nettoie tous les onglets
+    html.find('.tab').removeClass('active');
+    html.find('.sheet-tabs[data-group="primary"] a').removeClass('active');
+
+    // 3. Active uniquement l'onglet actif
+    html.find(`.tab[data-tab="${currentTab}"]`).addClass('active');
+    html.find(`.sheet-tabs[data-group="primary"] a[data-tab="${currentTab}"]`).addClass('active');
+}
+
+/**
+ * Get Current Tab for an item
+ * @param {object} html
+ * @param {boolean} isItem
+ * @returns {*|string}
+ * @private
+ */
+export function _getCurrentTab(html, isItem) {
+    const el = html.find('.sheet-tabs[data-group="primary"] a.active');
+
+    return (isItem)? (el.data('tab') || 'description') : (el.data('tab') || 'core') ;
 }
 

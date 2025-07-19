@@ -1,19 +1,23 @@
-<section class="grid grid-3col">
+<section class="tab {{tabs.character.id}} {{tabs.character.cssClass}} grid grid-3col"
+         data-tab="{{tabs.character.id}}"
+         data-group="{{tabs.character.group}}">
 <div class="sheet-body">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+    <img class="profile-img" src="{{document.img}}" data-edit="img" alt="{{document.name}}" title="{{document.name}}" data-action="editImage"/>
 </div>
-
 <div>
     <div class="traits flexcol">
         <label class="traits_title_label">{{localize 'yuigahama.main.traits'}}</label>
-        {{#each actor.system.traits as |trait key|}}
+        {{#each system.traits as |trait key|}}
         <div class="flexrow flex-group-center">
-            <label class="resource-label rollable flexlarge align-left vertical-label" data-value="{{trait.value}}" data-label="{{trait.name}}" >{{trait.name}}</label>
+            <label class="resource-label rollable flexlarge align-left vertical-label" data-value="{{trait.value}}" data-label="{{trait.name}}"
+                   data-action="onRollDice" >{{trait.name}}</label>
             <div>
                 <img class="icon_trait rollable" src="systems/yuigahama/assets/img/traits/{{key}}.jpg" alt="{{key}}" data-value="{{trait.value}}" data-label="{{trait.name}}"
-                     data-tooltip="{{trait.label}}">
+                     data-tooltip="{{trait.label}}" data-action="onRollDice">
             </div>
-            <input class="traits_input" type="number" name="system.traits.{{key}}.value" value="{{trait.value}}" min="{{trait.min}}" max="{{trait.max}}" data-dtype="Number"/>
+            <label>
+                <input class="traits_input" type="number" name="system.traits.{{key}}.value" value="{{trait.value}}" min="{{trait.min}}" max="{{trait.max}}" data-dtype="Number"/>
+            </label>
         </div>
         {{/each}}
     </div>

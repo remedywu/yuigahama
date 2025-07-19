@@ -1,4 +1,4 @@
-<form class="{{cssClass}} {{object.sheettype}}" autocomplete="off">
+<div class="{{cssClass}} {{object.sheettype}}" >
     <div class="dialog-area">
         <div class="infobox headline">{{localize "yuigahama.dice.roll"}} {{label}}</div>
         <div class="infobox">
@@ -23,9 +23,13 @@
             </div>
             {{/if}}
         </div>
-        <div class="flex-group-center">
-            <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "yuigahama.dialog.launch"}}</button>
-            <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "yuigahama.dialog.close"}}</button>
+        <div class="dialog_roll_button">
+            <div class="dialog_buttons">
+                <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "yuigahama.dialog.launch"}}</button>
+            </div>
+            <div class="dialog_buttons">
+                <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "yuigahama.dialog.close"}}</button>
+            </div>
         </div>
     </div>
-</form>
+</div>

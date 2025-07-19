@@ -34,7 +34,11 @@
     },
     "dialog": {
       "close": "Fermer",
-      "launch": "Lancer"
+      "launch": "Lancer",
+      "yes": "OUI",
+      "no": "NON",
+      "deleteitem": "Suppression d'un attribut",
+      "deleteconfirm": "Voulez-vous vraiment supprimer cet attribut ?"
     },
     "dice": {
       "roll": "Faire un test de",

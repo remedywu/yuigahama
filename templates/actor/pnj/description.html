@@ -1,7 +1,7 @@
 <div class="descriptionTitle">
-    {{localize 'yuigahama.tab.second'}}
+    <fieldset class="description">
+        <legend class="text-block-header">{{localize 'yuigahama.description.tab_title'}}</legend>
+        <prose-mirror toggled name="system.description" {editable}}
+                      value="{{ system.description }}">{{{ system.description }}}</prose-mirror>
+    </fieldset>
 </div>
-<fieldset class="description">
-    <legend class="text-block-header"></legend>
-    {{editor system.description target="system.description" button=true owner=owner editable=editable}}
-</fieldset>

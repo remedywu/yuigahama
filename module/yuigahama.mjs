@@ -12,6 +12,7 @@ import { ybsConfig } from "./helpers/config.mjs";
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { RegisterSettings } from "./helpers/settings.mjs";
 import {changeFont} from "./helpers/common.mjs";
+import initProseMirrorEditor from "./helpers/initProseMirrorEditor.js";
 
 //Init Hook
 Hooks.once('init', async function() {
@@ -26,6 +27,8 @@ Hooks.once('init', async function() {
 
   //Init The chat manager for buttons
   await ChatManager.init();
+
+  initProseMirrorEditor();
 
   // Global access config
   CONFIG.yuigahama = ybsConfig;
@@ -95,6 +98,16 @@ Handlebars.registerHelper("damageState", function (healthValues, index) {
   return result;
 });
 
+Handlebars.registerHelper("eachInObject", function (obj, options) {
+  let result = "";
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result += options.fn({ key: key, value: obj[key] });
+    }
+  }
+  return result;
+});
+
 // Ready Hook
 Hooks.once("ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
@@ -118,10 +131,11 @@ Hooks.on("renderApplication", (sheet) => {
   changeFont(sheet);
 });
 
-Hooks.on("renderCompendium", (sheet) => {
-  changeFont(sheet);
+Hooks.on("renderApplicationV2", (application,element,context,options) => {
+  if (application instanceof yuigahamaActorSheet) {
+    changeFont(application);
+  }
 });
-
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

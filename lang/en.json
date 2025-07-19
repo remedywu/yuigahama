@@ -34,7 +34,11 @@
     },
     "dialog": {
       "close": "Close",
-      "launch": "Launch"
+      "launch": "Launch",
+      "yes": "YES",
+      "no": "NO",
+      "deleteitem": "Deleting an attribute",
+      "deleteconfirm": "Are you sure you want to delete this attribute ?"
     },
     "dice": {
       "roll": "Make a test of",

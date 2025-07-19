@@ -14,4 +14,8 @@
 
 ## 1.0.5
 - Compatibility Minimal FoundryVTT Version 13
-- TO DO : Remove all warnings for V1 Application framework and renderChatMessageHTML
+
+## 1.1.0
+- Use HandlebarsApplicationMixin and ActorSheetV2 for Player and PNJ
+- new renderChatMessageHTML
+- Add Message for check before delete an attribute

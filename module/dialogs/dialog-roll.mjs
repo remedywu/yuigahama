@@ -1,87 +1,91 @@
 import {rollTheDice} from "../helpers/common.mjs";
+// V2 (New)
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 
-export class DialogRoll extends FormApplication {
+export class DialogRoll extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(actor, dataset) {
         super(dataset, {submitOnChange: true, closeOnSubmit: false});
         this.actor = actor;
-        this.isFreeRole = actor === undefined;
-        this.tokenUse = 0;
         this.value = parseInt(dataset.value);
         this.label = dataset.label;
+    }
 
-        if (!this.isFreeRole) {
-            this.options.title = `${this.actor.name}`;
+    // V2 Pattern (New)
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = {
+        tag: 'form',  // REQUIRED for dialogs and forms
+        form: {
+            submitOnChange: false,
+            closeOnSubmit: true,
+            handler: DialogRoll.onSubmit,
+        },
+        classes: ["yuigahama yuigahama-dialog general-dialog"],
+        position: {
+            width: 350,
+            height: 350
+        },
+        window: {
+            resizable: true,
+            title: '',
+        },
+    }
+
+    static PARTS = {
+        form: {
+            template: 'systems/yuigahama/templates/dialogs/dialog-roll.html'
         }
     }
 
     /**
-     * Extend and override the default options used by the Actor Sheet
-     * @returns {Object}
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["yuigahama yuigahama-dialog general-dialog"],
-            template: "systems/yuigahama/templates/dialogs/dialog-roll.html",
-            closeOnSubmit: false,
-            submitOnChange: true,
-            resizable: true,
-            width:350,
-            height:350,
-        });
-    }
-
-    /**
-     * Get Data and add others
+     * V2: Get Data and add others
      * @returns {Promise<*>}
      */
-    async getData() {
-        const data = super.getData();
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options)
         //Put actorData for simply access
-        data.actorData = this.actor.system;
+        context.actorData = this.actor.system;
         let max = (this.actor.system.token.value < 3)? this.actor.system.token.value : 3
-        data.tokenMax = max;
-        data.tokenLoop = max +1;
-        data.label = this.label;
+        context.tokenMax = max;
+        context.tokenLoop = max +1;
+        context.label = this.label;
 
-        return data;
-    }
-
-    /** Override **/
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        html.find('.actionbutton').click(this._generalRoll.bind(this));
-        html.find('.closebutton').click(this._closeForm.bind(this));
-    }
-
-    /** Override **/
-    async _updateObject(event, formData) {
-        this.tokenUse = formData['actorData.token.use'];
+        return context;
     }
 
     /**
-     * Generate the formula for dice roll
-     * @param {Event} event
+     * V2: Replace activateListeners
+     * @param context Same data return by _prepareContext(options)
+     * @param options
+     * @returns {Promise<void>}
      * @private
      */
-    async _generalRoll(event) {
-        if (this.object.close) {
-            this.close();
-            return;
-        }
+    async _onRender(context,options) {
+        await super._onRender(context, options);
+    }
+
+    async _onSubmitForm(event, formData) {
+        return super._onSubmitForm(event, formData);
+    }
+
+    /**
+     *
+     * @param {Event} event The event object.
+     * @param {object} form The form object.
+     * @param {object} formData The form data compiled by foundry.
+     */
+    static async onSubmit(event, form, formData) {
+        const data = foundry.utils.expandObject(formData.object);
 
         //Infos for the dice
         const rollData = {
             actor: this.actor,
-            tokenUse : this.tokenUse,
+            tokenUse : data.actorData.token.use,
             trait: this.label,
             value: this.value,
             type: "roll",
         }
 
         await rollTheDice(rollData);
-
-        this.close();
     }
 
     /**

@@ -1,36 +1,91 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
 import {rollTheDice, changeLifeCount} from "../helpers/common.mjs";
+// V2 (New)
+const { HandlebarsApplicationMixin } = foundry.applications.api
+const { ActorSheetV2 } = foundry.applications.sheets
 
-export class yuigahamaPNJSheet extends foundry.appv1.sheets.ActorSheet {
+export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2)  {
 
-    /** @override */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["yuigahama yuigahama-sheet"],
+    static DEFAULT_OPTIONS = {
+        window: {
+            icon: 'fa-solid fa-dice-d6',
+            resizable: true
+        },
+        classes: ["yuigahama", "yuigahama-sheet"],
+        position: {
             width: 1100,
             height: 750,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core" }]
-        });
+        },
+        actions: {
+            onRollDice: yuigahamaPNJSheet._onRoll,
+        },
+        form: {
+            submitOnChange: true,
+            closeOnSubmit: false,
+        },
+        dragDrop: [
+            {
+                dragSelector: '[data-drag]',
+                dropSelector: null
+            }
+        ]
     }
 
-    /** @override */
-    get template() {
-        return `systems/yuigahama/templates/actor/actor-pnj-sheet.html`;
+    static PARTS = {
+        header: {
+            template: "systems/yuigahama/templates/actor/actor-pnj-sheet.html"
+        }
     }
 
-    /** @override */
-    getData() {
-        const context = super.getData();
+    static TABS = {
+        core: {
+            id: "core",
+            group: "primary",
+            icon: "systems/yuigahama/assets/img/icons/surfer.svg",
+            title: "yuigahama.tab.first"
+        },
+        description: {
+            id: "description",
+            group: "primary",
+            icon: "systems/yuigahama/assets/img/icons/equipement.svg",
+            title: "yuigahama.tab.second"
+        },
+    }
 
-        // Use a safe clone of the actor data for further operations.
-        const actorData = this.actor.toObject(false);
+    tabGroups = {
+        primary: 'core'
+    }
 
-        // Add the actor's data to context.data for easier access, as well as flags.
-        context.system = actorData.system;
-        context.flags = actorData.flags;
+    getTabs () {
+        const tabs = yuigahamaPNJSheet.TABS;
 
-        // Add roll data for TinyMCE editors.
-        context.rollData = context.actor.getRollData();
+        for (const tab of Object.values(tabs)) {
+            tab.active = this.tabGroups[tab.group] === tab.id
+            tab.cssClass = tab.active ? 'active' : ''
+        }
+
+        return tabs
+    }
+
+    /**
+     * V2: Replace getData
+     * @param {object} options
+     * @returns {Promise<*>}
+     * @private
+     */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        context.system = this.document.system;
+        context.flags = this.document.flags;
+
+        context.owner = this.actor.isOwner;
+        context.editable = this.isEditable;
+
+        // Prepare tabs
+        context.tabs = this.getTabs()
+
+        context.rollData = this.actor.getRollData();
 
         // Prepare active effects
         context.effects = prepareActiveEffectCategories(this.actor.effects);
@@ -38,9 +93,20 @@ export class yuigahamaPNJSheet extends foundry.appv1.sheets.ActorSheet {
         return context;
     }
 
-    /** @override */
-    activateListeners(html) {
-        super.activateListeners(html);
+    async _preparePartContext(partId, context, options) {
+        return super._preparePartContext(partId, context, options);
+    }
+
+    /**
+     * V2: Replace activateListeners
+     * @param context Same data return by _prepareContext(options)
+     * @param options
+     * @returns {Promise<void>}
+     * @private
+     */
+    async _onRender(context, options) {
+        //Reminder AppV2 has abandoned jQuery, so, if you still want to use it, you must add the following:
+        const html = $(this.element)
 
         // Render the item sheet for viewing/editing prior to the editable check.
         html.find('.item-edit').click(ev => {
@@ -55,8 +121,6 @@ export class yuigahamaPNJSheet extends foundry.appv1.sheets.ActorSheet {
         // Active Effect management
         html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
 
-        // Rollable Traits.
-        html.find('.rollable').click(this._onRoll.bind(this));
         changeLifeCount(html,this.actor);
 
         //Life Points
@@ -78,10 +142,10 @@ export class yuigahamaPNJSheet extends foundry.appv1.sheets.ActorSheet {
      * @param {Event} event The originating click event
      * @private
      */
-    async _onRoll(event) {
+    static async _onRoll(event) {
         event.preventDefault();
-        const element = event.currentTarget;
-        const dataset = element.dataset;
+        const button = event.target.closest('.rollable');
+        const dataset = button.dataset;
 
         //Dialog before launch the dice
         if (dataset.value){

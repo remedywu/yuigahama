@@ -7,7 +7,7 @@ export class ChatManager {
      * @returns {Promise<void>}
      */
     static async init() {
-        Hooks.on("renderChatMessage", async (app, html, msg) => await ChatManager.onRenderChatMessage(app, html, msg));
+        Hooks.on("renderChatMessageHTML", async (app, html, msg) => await ChatManager.onRenderChatMessage(app, html, msg));
     }
 
     /**
@@ -21,8 +21,10 @@ export class ChatManager {
         const chatMessage = ChatManager.getChatMessageFromHtml(html);
         const showButtons = ChatManager.hasRight(chatMessage);
 
-        const buttonReRoll = html.find('.ybs-button-reroll');
-        const buttonSuccessCritical = html.find('.ybs-button-success-critical');
+        var $objet = $(html);
+
+        const buttonReRoll = $objet.find('.ybs-button-reroll');
+        const buttonSuccessCritical = $objet.find('.ybs-button-success-critical');
         if (showButtons) {
             buttonReRoll.show();
             buttonReRoll.click(async event => await ChatManager.onReRoll(ChatManager.getChatMessage(event)));
