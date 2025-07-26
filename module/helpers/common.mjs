@@ -113,3 +113,29 @@ export function _getCurrentTab(html, isItem) {
     return (isItem)? (el.data('tab') || 'description') : (el.data('tab') || 'core') ;
 }
 
+/**
+ * Manage square life event
+ * @param actor
+ * @param {Event} event
+ * @returns {Promise<void>}
+ */
+export async function handleSquareChange(actor, event) {
+    event.preventDefault();
+
+    const element = event.currentTarget;
+    const oldState = element.dataset.state || "";
+    const dataset = element.dataset;
+
+    const actorData = foundry.utils.duplicate(actor);
+
+    if (oldState === "") {
+        actorData.system.life.values[dataset.index] = 1;
+    } else if (oldState === "/") {
+        actorData.system.life.values[dataset.index] = 2;
+    } else {
+        actorData.system.life.values[dataset.index] = 0;
+    }
+
+    await actor.update(actorData);
+}
+

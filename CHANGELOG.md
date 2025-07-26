@@ -19,3 +19,7 @@
 - Use HandlebarsApplicationMixin and ActorSheetV2 for Player and PNJ
 - new renderChatMessageHTML
 - Add Message for check before delete an attribute
+
+## 1.1.1
+- Use TypeDataModel for Player and PNJ instead of template.json
+- handleSquareChange in common

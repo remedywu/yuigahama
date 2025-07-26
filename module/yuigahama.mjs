@@ -3,6 +3,8 @@ import { yuigahamaActor } from "./documents/actor.mjs";
 import { yuigahamaItem } from "./documents/item.mjs";
 import { yuigahamaRoll } from "./documents/roll.mjs";
 import { ChatManager } from './chat/chat-manager.mjs';
+import * as actorDataModels from './data/actor/index.js';
+import * as itemDataModels from "./data/item/index.js";
 // Import sheet classes.
 import { yuigahamaActorSheet } from "./sheets/actor-sheet.mjs";
 import { yuigahamaPNJSheet } from "./sheets/actor-pnj-sheet.mjs";
@@ -34,7 +36,9 @@ Hooks.once('init', async function() {
   CONFIG.yuigahama = ybsConfig;
   // Define custom Document classes
   CONFIG.Actor.documentClass = yuigahamaActor;
+  CONFIG.Actor.dataModels = actorDataModels.config;
   CONFIG.Item.documentClass = yuigahamaItem;
+  CONFIG.Item.dataModels = itemDataModels.config;
 
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);

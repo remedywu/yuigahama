@@ -3,7 +3,6 @@
 Le système implémente pour Foundry VTT les règles du jeu de rôle Yuigahama Bad Seeds.
 
 Pour jouer, vous aurez besoin du livre de règles édité par les [éditions du Troisième Oeil](https://www.letogames.com/).
-Le livre est disponible en version PDF dans [la boutique](https://www.letogames.com/page-d-articles/souscription-yuigahama-bad-seeds-pdf).
 
 
 ## Personnages et PNJ
@@ -30,6 +29,7 @@ Une option permet de désactiver la police de caractère pour ceux qui auraient 
 
 # Mentions Légales
 Yuigahama Bad Seeds est un jeu crée par Fredric Bessy édité par les éditions du Troisème Oeil.
+
 Les illustrations sont de Frederic Bessy, auteur du jeu Yuigahama Bad Seeds.
 
 Toute la propriété intellectuelle leur appartient, ce système est une adpatation destinée à fonctionner sous FoundryVTT.

@@ -1,5 +1,5 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
-import {rollTheDice, changeLifeCount} from "../helpers/common.mjs";
+import {rollTheDice, changeLifeCount, handleSquareChange} from "../helpers/common.mjs";
 // V2 (New)
 const { HandlebarsApplicationMixin } = foundry.applications.api
 const { ActorSheetV2 } = foundry.applications.sheets
@@ -168,22 +168,6 @@ export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
      * @private
      */
     async _onSquareChange(event) {
-        event.preventDefault();
-
-        const element = event.currentTarget;
-        const oldState = element.dataset.state || "";
-        const dataset = element.dataset;
-
-        const actorData = foundry.utils.duplicate(this.actor);
-
-        if (oldState === "") {
-            actorData.system.life.values[dataset.index] = 1;
-        }
-        else if (oldState === "/") {
-            actorData.system.life.values[dataset.index] = 2;
-        }
-        else actorData.system.life.values[dataset.index] = 0;
-
-        await this.actor.update(actorData);
+        return handleSquareChange(this.actor, event);
     }
 }

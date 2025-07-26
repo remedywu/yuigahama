@@ -23,7 +23,7 @@ export class yuigahamaItemSheet extends api.HandlebarsApplicationMixin(sheets.It
       closeOnSubmit: false,
     },
     position: {
-      width: 550,
+      width: 600,
       height: 600,
     },
     dragDrop: [{ dragSelector: "[data-drag]", dropSelector: null }],

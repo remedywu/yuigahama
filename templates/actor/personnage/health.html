@@ -1,11 +1,11 @@
 <div class="clearareaBox health">
     <div class="sheet-headline"><span class="sheet-banner-text">{{localize 'yuigahama.health.life'}}</span></div>
     <div class="flexrow">
-        <div class="resource-counter healthbox" data-name="document.system.life">
-            {{#numLoop document.system.life.max 0}}
+        <div class="resource-counter healthbox" data-name="system.life">
+            {{#numLoop system.life.max 0}}
             <span class="resource-value-step"
                   data-index="{{this.index}}"
-                  data-state="{{damageState ../document.system.life.values this.index}}"></span>
+                  data-state="{{damageState ../system.life.values this.index}}"></span>
             {{/numLoop}}
         </div>
     </div>

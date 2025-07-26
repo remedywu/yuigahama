@@ -1,6 +1,6 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
 import {DialogRoll} from "../dialogs/dialog-roll.mjs";
-import {rollTheDice, changeLifeCount, manageTabs} from "../helpers/common.mjs";
+import {rollTheDice, changeLifeCount, manageTabs, handleSquareChange} from "../helpers/common.mjs";
 import {yuigahamaItem} from "../documents/item.mjs";
 
 // V2 (New)
@@ -321,23 +321,7 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
    * @private
    */
   async _onSquareChange(event) {
-    event.preventDefault();
-
-    const element = event.currentTarget;
-    const oldState = element.dataset.state || "";
-    const dataset = element.dataset;
-
-    const actorData = foundry.utils.duplicate(this.actor);
-
-    if (oldState === "") {
-      actorData.system.life.values[dataset.index] = 1;
-    } else if (oldState === "/") {
-      actorData.system.life.values[dataset.index] = 2;
-    } else {
-      actorData.system.life.values[dataset.index] = 0;
-    }
-
-    await this.actor.update(actorData);
+    return handleSquareChange(this.actor, event);
   }
 
   /**
