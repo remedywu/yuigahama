@@ -1,10 +1,12 @@
-import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
-import {rollTheDice, changeLifeCount, handleSquareChange} from "../helpers/common.mjs";
-// V2 (New)
-const { HandlebarsApplicationMixin } = foundry.applications.api
-const { ActorSheetV2 } = foundry.applications.sheets
+import {onManageActiveEffect} from "../helpers/effects.mjs";
+import {rollTheDice} from "../helpers/common.mjs";
+import {YuigahamaActorSheetBase} from "./actor-sheet-base.mjs";
 
-export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2)  {
+/**
+ * NPC sheet.
+ * @extends {YuigahamaActorSheetBase}
+ */
+export class yuigahamaPNJSheet extends YuigahamaActorSheetBase {
 
     static DEFAULT_OPTIONS = {
         window: {
@@ -52,51 +54,6 @@ export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
         },
     }
 
-    tabGroups = {
-        primary: 'core'
-    }
-
-    getTabs () {
-        const tabs = yuigahamaPNJSheet.TABS;
-
-        for (const tab of Object.values(tabs)) {
-            tab.active = this.tabGroups[tab.group] === tab.id
-            tab.cssClass = tab.active ? 'active' : ''
-        }
-
-        return tabs
-    }
-
-    /**
-     * V2: Replace getData
-     * @param {object} options
-     * @returns {Promise<*>}
-     * @private
-     */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-
-        context.system = this.document.system;
-        context.flags = this.document.flags;
-
-        context.owner = this.actor.isOwner;
-        context.editable = this.isEditable;
-
-        // Prepare tabs
-        context.tabs = this.getTabs()
-
-        context.rollData = this.actor.getRollData();
-
-        // Prepare active effects
-        context.effects = prepareActiveEffectCategories(this.actor.effects);
-
-        return context;
-    }
-
-    async _preparePartContext(partId, context, options) {
-        return super._preparePartContext(partId, context, options);
-    }
-
     /**
      * V2: Replace activateListeners
      * @param context Same data return by _prepareContext(options)
@@ -120,8 +77,6 @@ export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
 
         // Active Effect management
         html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
-
-        changeLifeCount(html,this.actor);
 
         //Life Points
         html.find(".health > .flexrow > .resource-counter > .resource-value-step").click(this._onSquareChange.bind(this));
@@ -159,15 +114,5 @@ export class yuigahamaPNJSheet extends HandlebarsApplicationMixin(ActorSheetV2) 
             }
             await rollTheDice(rollData);
         }
-    }
-
-    /**
-     * Change the status of the life checkboxes
-     * @param {Event} event
-     * @returns {Promise<void>}
-     * @private
-     */
-    async _onSquareChange(event) {
-        return handleSquareChange(this.actor, event);
     }
 }

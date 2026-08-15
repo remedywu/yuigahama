@@ -19,12 +19,14 @@ export async function rollTheDice(rollData){
         rolls: [roll.toJSON()],
         content: html,
         speaker: ChatMessage.getSpeaker({ actor: rollData.actor }),
-        rollMode: game.settings.get("core", "rollMode"),
+        rollMode: game.settings.get("core", "messageMode"),
         sound: CONFIG.sounds.dice,
         flags: {
-            trait: rollData.trait,
-            value: rollData.value,
-            actor: rollData.actor,
+            yuigahama: {
+                trait: rollData.trait,
+                value: rollData.value,
+                actorUuid: rollData.actor.uuid,
+            }
         }
     };
 
@@ -38,24 +40,6 @@ export async function rollTheDice(rollData){
  */
 export function getDefaultImg(type) {
     return "systems/yuigahama/assets/img/icons/"+type+".svg";
-}
-
-/**
- * Change the count of checkboxes life
- * @param {object} html
- * @param {object} context
- * @private
- */
-export function changeLifeCount(html,context){
-    let newMax = 3 + context.system.traits.choushi.value;
-    let array = html.find(".health > .flexrow > .resource-counter > .resource-value-step");
-    if (context.system.traits.choushi.value<=0 && array.length > newMax ) {
-        for (let i=0; i < array.length; i++ ){
-            if (i> newMax){
-                array[i].remove();
-            }
-        }
-    }
 }
 
 /**
@@ -74,6 +58,22 @@ export function changeFont(sheet) {
 }
 
 /**
+ * Compute the active state / css class of a sheet's tab definition.
+ * Shared by every sheet's getTabs() to avoid duplication.
+ * @param {object} tabsDef    The static TABS definition of the sheet
+ * @param {object} tabGroups  The sheet's current tabGroups state
+ * @returns {object}          The same tabsDef, mutated with active/cssClass
+ */
+export function prepareTabs(tabsDef, tabGroups) {
+    for (const tab of Object.values(tabsDef)) {
+        tab.active = tabGroups[tab.group] === tab.id;
+        tab.cssClass = tab.active ? 'active' : '';
+    }
+
+    return tabsDef;
+}
+
+/**
  *
  * Manage and clean tabs
  * @param {object} html
@@ -88,8 +88,8 @@ export function manageTabs(html, tabs,isItem){
         (tab.active)? el.addClass("active") : el.removeClass("active");
     }
 
-    // 1. Détermine l'onglet actif (depuis tabGroups ou stock temporaire)
-    const currentTab = _getCurrentTab(html, isItem) || this.tabGroups?.primary || 'core';
+    // 1. Détermine l'onglet actif (depuis le DOM, avec repli selon le type de feuille)
+    const currentTab = _getCurrentTab(html, isItem) || (isItem ? 'description' : 'core');
 
     // 2. Nettoie tous les onglets
     html.find('.tab').removeClass('active');
@@ -126,16 +126,17 @@ export async function handleSquareChange(actor, event) {
     const oldState = element.dataset.state || "";
     const dataset = element.dataset;
 
-    const actorData = foundry.utils.duplicate(actor);
+    // ArrayField : on met à jour le tableau complet (Foundry ne gère pas les updates par index)
+    const values = foundry.utils.duplicate(actor.system.life.values);
 
     if (oldState === "") {
-        actorData.system.life.values[dataset.index] = 1;
+        values[dataset.index] = 1;
     } else if (oldState === "/") {
-        actorData.system.life.values[dataset.index] = 2;
+        values[dataset.index] = 2;
     } else {
-        actorData.system.life.values[dataset.index] = 0;
+        values[dataset.index] = 0;
     }
 
-    await actor.update(actorData);
+    await actor.update({ "system.life.values": values });
 }
 

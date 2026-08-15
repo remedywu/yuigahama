@@ -1,44 +1,39 @@
-# Bienvenue à Yuigahama, joyau de Kamakura et paradis des surfeurs ! 
+# Bienvenue à Yuigahama, joyau de Kamakura et paradis des surfeurs !
 
-Le système implémente pour Foundry VTT les règles du jeu de rôle Yuigahama Bad Seeds.
-
-Pour jouer, vous aurez besoin du livre de règles édité par les [éditions du Troisième Oeil](https://www.letogames.com/).
-
+Le système implémente pour Foundry VTT les règles du jeu de rôle **Yuigahama Bad Seeds**.
+Pour jouer, vous aurez besoin du livre de règles, qui était édité par les [Éditions du Troisième Œil](https://www.letogames.com/).
 
 ## Personnages et PNJ
 
 La fiche de personnage reste fidèle à la version simple du livre.
-En plus est ajouté un onglet qui calcule automatiquement le nombre de jet de dés de chaque trait pour donner des informations sur l'évolution du personnage.
-
+En plus, un onglet a été ajouté ; il calcule automatiquement le nombre de jets de dés de chaque trait afin de fournir des informations sur l'évolution du personnage.
 [Exemple de fiche de personnage](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/fiche_personnage.png)
-
-Une fiche PNJ est disponible.
-C'est une version simplifiée de la fiche de personnage avec juste les traits, la description et les points de vie.
-
+Une fiche de PNJ est également disponible.
+C'est une version simplifiée de la fiche de personnage, avec uniquement les traits, la description et les points de vie.
 [Exemple de fiche de PNJ](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/fiche_pnj.png)
 
-
 ## Compendium
-Un compendium est disponible recensant les attributs de base présents dans le livre avec leurs illustrations.
-Un grand merci à l'auteur qui a autorisé la diffusion des illustrations et des descriptions du livre pour les utilisateurs du système.
 
-[Exemple sur le Compendium](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/compendium.png)
+Un compendium est disponible ; il recense les attributs de base présents dans le livre, avec leurs illustrations.
+Un grand merci à l'auteur, qui a autorisé la diffusion des illustrations et des descriptions du livre pour les utilisateurs du système.
+[Exemple du compendium](https://raw.githubusercontent.com/remedywu/yuigahama/master/assets/img/screenshots/compendium.png)
 
 ## Options du système
-Une option permet de désactiver la police de caractère pour ceux qui auraient des difficultés à la lire.
 
-# Mentions Légales
-Yuigahama Bad Seeds est un jeu crée par Fredric Bessy édité par les éditions du Troisème Oeil.
+Une option permet de désactiver la police de caractères pour ceux qui auraient des difficultés à la lire.
 
-Les illustrations sont de Frederic Bessy, auteur du jeu Yuigahama Bad Seeds.
+# Mentions légales
 
-Toute la propriété intellectuelle leur appartient, ce système est une adpatation destinée à fonctionner sous FoundryVTT.
+**Yuigahama Bad Seeds** est un jeu créé par Frédéric Bessy, qui était édité par les Éditions du Troisième Œil.
+Les illustrations sont de Frédéric Bessy, auteur du jeu **Yuigahama Bad Seeds**.
+Toute la propriété intellectuelle leur appartient ; ce système est une adaptation destinée à fonctionner sous Foundry VTT.
 
-## License
-L'ensemble du code est sous licence Creative Commons CC BY-NC-SA 4.0
+## Licence
 
-## En Plus
-Omedetou Frederic Bessy et les Editions du Troisième Oeil car Yuigahama Bad Seeds a gagné le prix Roliste 2023 du meilleur JDR Francophone !
+L'ensemble du code est sous licence Creative Commons CC BY-NC-SA 4.0.
 
+## En plus
 
-
+* Félicitations à Frédéric Bessy et aux Éditions du Troisième Œil : **Yuigahama Bad Seeds** a remporté le Prix Rôliste 2023 du meilleur JDR francophone !
+* Depuis mi-2025, le livre de base n'est plus édité par les Éditions du Troisième Œil. Vous pouvez tenter de le trouver d'occasion.
+* Pour les fans de Frédéric Bessy et les autres, découvrez son nouveau JDR : [Tōkyō Disruptions, Le Bureau des Apocryphes](https://www.lulu.com/fr/search?contributor=Fr%25C3%25A9d%25C3%25A9ric+Bessy&page=1&pageSize=10&adult_audience_rating=00&sortBy=PRODUCT_SALES_90_DAYS).

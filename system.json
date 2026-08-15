@@ -1,7 +1,7 @@
 {
   "id": "yuigahama",
   "title": "Yuigahama Bad Seeds",
-  "description": "Yuigahama Bad Seeds, jeu de rôle de Frederic Bessy aux Editions du Troisième Oeil, système pour Foundry VTT. Prix Roliste 2023 du meilleur JDR Francophone",
+  "description": "Yuigahama Bad Seeds, jeu de rôle de Frederic Bessy publié à l'origine aux Editions du Troisième Oeil, système pour Foundry VTT. Prix Roliste 2023 du meilleur JDR Francophone",
   "authors": [
     {
       "name": "JM",
@@ -14,11 +14,11 @@
   "bugs": "https://github.com/remedywu/yuigahama/issues",
   "changelog": "https://raw.githubusercontent.com/remedywu/yuigahama/master/CHANGELOG.md",
   "manifest": "https://raw.githubusercontent.com/remedywu/yuigahama/master/system.json",
-  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.1.1.zip",
-  "version": "1.1.1",
+  "download": "https://github.com/remedywu/yuigahama/archive/refs/tags/v1.1.2.zip",
+  "version": "1.1.2",
   "compatibility": {
     "minimum": 11,
-    "verified": "13.346",
+    "verified": "14.366",
     "maximum": ""
   },
   "socket": false,

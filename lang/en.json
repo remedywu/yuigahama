@@ -93,6 +93,16 @@
       },
       "description": "Description",
       "regles_opt": "Optional Rules"
+    },
+    "effects": {
+      "new": "New Effect",
+      "temporary": "Temporary Effects",
+      "passive": "Passive Effects",
+      "inactive": "Inactive Effects"
+    },
+    "notifications": {
+      "ownedItemOnly": "You can only create macro buttons for owned Items",
+      "itemNotFound": "Could not find item {name}. You may need to delete and recreate this macro."
     }
   },
   "SETTINGS": {

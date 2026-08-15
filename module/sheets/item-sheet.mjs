@@ -1,4 +1,4 @@
-import {manageTabs} from "../helpers/common.mjs";
+import {manageTabs, prepareTabs} from "../helpers/common.mjs";
 
 const api = foundry.applications.api;
 const sheets = foundry.applications.sheets;
@@ -49,14 +49,7 @@ export class yuigahamaItemSheet extends api.HandlebarsApplicationMixin(sheets.It
   }
 
   getTabs () {
-    const tabs = yuigahamaItemSheet.TABS
-
-    for (const tab of Object.values(tabs)) {
-      tab.active = this.tabGroups[tab.group] === tab.id
-      tab.cssClass = tab.active ? 'active' : ''
-    }
-
-    return tabs
+    return prepareTabs(yuigahamaItemSheet.TABS, this.tabGroups);
   }
 
   get title() {

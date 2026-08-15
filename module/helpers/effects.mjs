@@ -11,7 +11,7 @@
   switch ( a.dataset.action ) {
     case "create":
       return owner.createEmbeddedDocuments("ActiveEffect", [{
-        label: "New Effect",
+        label: game.i18n.localize("yuigahama.effects.new"),
         icon: "icons/svg/aura.svg",
         origin: owner.uuid,
         "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
@@ -37,17 +37,17 @@ export function prepareActiveEffectCategories(effects) {
     const categories = {
       temporary: {
         type: "temporary",
-        label: "Temporary Effects",
+        label: game.i18n.localize("yuigahama.effects.temporary"),
         effects: []
       },
       passive: {
         type: "passive",
-        label: "Passive Effects",
+        label: game.i18n.localize("yuigahama.effects.passive"),
         effects: []
       },
       inactive: {
         type: "inactive",
-        label: "Inactive Effects",
+        label: game.i18n.localize("yuigahama.effects.inactive"),
         effects: []
       }
     };

@@ -92,6 +92,35 @@ export class ChatManager {
 
 
     /**
+     * Read a system flag on a message, looking under the namespaced flags first
+     * and falling back to the legacy root-level flag for messages created before the refactor.
+     * @param {ChatMessage} message
+     * @param {string} key
+     * @returns {*}
+     */
+    static getMessageFlag(message, key) {
+        return message?.flags?.yuigahama?.[key] ?? message?.flags?.[key];
+    }
+
+    /**
+     * Resolve the live Actor document owning a chat message.
+     * Uses the stored uuid, with a fallback to the legacy full-actor flag for old messages.
+     * @param {ChatMessage} message
+     * @returns {yuigahamaActor|null}
+     */
+    static getMessageActor(message) {
+        const uuid = ChatManager.getMessageFlag(message, "actorUuid");
+        if (uuid) {
+            const doc = fromUuidSync(uuid);
+            if (doc) return doc;
+        }
+        // Backward compatibility with messages created before the uuid refactor
+        const legacy = message?.flags?.actor;
+        if (legacy?._id) return game.actors.get(legacy._id);
+        return null;
+    }
+
+    /**
      * Take the value of the Trait in the actor
      * @param {object} actor
      * @param {string} traitName
@@ -107,13 +136,18 @@ export class ChatManager {
      * @returns {Promise<void>}
      */
     static async onReRoll(chatMsg) {
-        const value = this.getTraitValue(chatMsg.message.flags.actor, chatMsg.trait);
+        const actor = ChatManager.getMessageActor(chatMsg.message);
+        if (!actor) return;
+
+        // Prefer the clean stored trait flag over the flavor text (which may carry a token suffix)
+        const trait = ChatManager.getMessageFlag(chatMsg.message, "trait") || chatMsg.trait;
+        const value = this.getTraitValue(actor, trait);
 
         //Infos for the dice
         const rollData = {
-            actor: chatMsg.message.flags.actor,
+            actor: actor,
             tokenUse : 0,
-            trait: chatMsg.trait,
+            trait: trait,
             value: value,
             type: "reroll",
         }
@@ -127,23 +161,24 @@ export class ChatManager {
             rolls: [roll.toJSON()],
             content: html,
             speaker: ChatMessage.getSpeaker({ actor: rollData.actor }),
-            rollMode: game.settings.get("core", "rollMode"),
+            rollMode: game.settings.get("core", "messageMode"),
             sound: CONFIG.sounds.dice,
             flags: {
-                trait: rollData.trait,
-                value: rollData.value,
-                actor: rollData.actor,
+                yuigahama: {
+                    trait: rollData.trait,
+                    value: rollData.value,
+                    actorUuid: actor.uuid,
+                }
             }
         };
 
         await roll.toMessage(chatData);
 
-        let actor = game.actors.get(chatMsg.message.flags.actor._id);
         await actor.updateTokenUse(1);
 
         //Fixe Temporaire
-        if (chatMsg.message.flags.trait.length > 0) {
-            await actor.updateEvolutionStats(chatMsg.message.flags.trait);
+        if (trait?.length > 0) {
+            await actor.updateEvolutionStats(trait);
         }
     }
 
@@ -153,7 +188,8 @@ export class ChatManager {
      * @returns {Promise<void>}
      */
     static async onSuccessCritical(chatMsg){
-        let actor = game.actors.get(chatMsg.message.flags.actor._id);
+        const actor = ChatManager.getMessageActor(chatMsg.message);
+        if (!actor) return;
 
         const templateData = {
             data: {
@@ -166,7 +202,7 @@ export class ChatManager {
         const html = await foundry.applications.handlebars.renderTemplate(ChatManager.CRTICAL_SUCCESS_TEMPLATE, templateData);
 
         ChatMessage.create({
-            type: CONST.CHAT_MESSAGE_STYLES.OOC,
+            style: CONST.CHAT_MESSAGE_STYLES.OOC,
             speaker: ChatMessage.getSpeaker({ actor: actor }),
             content: html
         });
@@ -187,8 +223,8 @@ export class ChatManager {
                 actorId: actor.id,
                 tokenId: actor.token?.id,
                 right: right,
-                trait: data?.flags?.trait,
-                value: data?.flags?.value,
+                trait: data?.flags?.yuigahama?.trait,
+                value: data?.flags?.yuigahama?.value,
             });
         }
     }

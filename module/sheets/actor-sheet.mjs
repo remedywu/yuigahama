@@ -1,17 +1,14 @@
-import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
+import {onManageActiveEffect} from "../helpers/effects.mjs";
 import {DialogRoll} from "../dialogs/dialog-roll.mjs";
-import {rollTheDice, changeLifeCount, manageTabs, handleSquareChange} from "../helpers/common.mjs";
+import {rollTheDice, manageTabs} from "../helpers/common.mjs";
 import {yuigahamaItem} from "../documents/item.mjs";
-
-// V2 (New)
-const { HandlebarsApplicationMixin } = foundry.applications.api
-const { ActorSheetV2 } = foundry.applications.sheets
+import {YuigahamaActorSheetBase} from "./actor-sheet-base.mjs";
 
 /**
- * Extend the base ActorSheetV2 document
- * @extends {foundry.applications.sheets.ActorSheetV2}
+ * Character sheet.
+ * @extends {YuigahamaActorSheetBase}
  */
-export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2)  {
+export class yuigahamaActorSheet extends YuigahamaActorSheetBase {
 
   static SEVEN_LUCKY_TEMPLATE = "systems/yuigahama/templates/roll/sevenlucky.html";
   dragDrop;
@@ -81,53 +78,14 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
     return this.actor.isToken ? `[Token] ${this.actor.name}` : this.actor.name
   }
 
-  tabGroups = {
-    primary: 'core'
-  }
-
   /**
-   * Get all tabs
-   * @returns {{core: {id: string, group: string, icon: string, title: string}, description: {id: string, group: string, icon: string, title: string}, evolution: {id: string, group: string, icon: string, title: string}}}
+   * Character-specific context enrichment (items + derived character data).
+   * @param {object} context
+   * @protected
    */
-  getTabs () {
-    const tabs = yuigahamaActorSheet.TABS;
-
-    for (const tab of Object.values(tabs)) {
-      tab.active = this.tabGroups[tab.group] === tab.id
-      tab.cssClass = tab.active ? 'active' : ''
-    }
-
-    return tabs
-  }
-
-  /**
-   * V2: Replace getData
-   * @param {object} options
-   * @returns {Promise<*>}
-   * @private
-   */
-  async _prepareContext(options) {
-    const context = await super._prepareContext(options);
-
-    context.system = this.document.system;
-    context.flags = this.document.flags;
-
-    context.owner = this.actor.isOwner;
-    context.editable = this.isEditable;
-
-    // Prepare tabs
-    context.tabs = this.getTabs()
-
+  async _prepareSheetData(context) {
     this._prepareItems(context);
     this._prepareCharacterData(context);
-    context.rollData = this.actor.getRollData();
-    context.effects = prepareActiveEffectCategories(this.actor.effects);
-
-    return context;
-  }
-
-  async _preparePartContext(partId, context, options) {
-    return super._preparePartContext(partId, context, options);
   }
 
   /**
@@ -146,8 +104,6 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
 
     // Active Effect management
     html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
-
-    changeLifeCount(html, this.actor);
 
     //Life Points
     html.find(".health > .flexrow > .resource-counter > .resource-value-step").click(this._onSquareChange.bind(this));
@@ -196,7 +152,7 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
     // Iterate through items, allocating to containers
     if (context.source.items !==undefined){
       for (let i of context.source.items) {
-        i.img = i.img || DEFAULT_TOKEN;
+        i.img = i.img || CONST.DEFAULT_TOKEN;
         if (i.type === 'attribut') {
           attributs.push(i);
         }
@@ -214,7 +170,7 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
    * @private
    */
   static async _onItemCreate(event, target) {
-    const header = event.currentTarget;
+    const header = target;
     const docCls = getDocumentClass(header.dataset.documentClass || "Item");
     const type = target.dataset.type || "item";
 
@@ -315,16 +271,6 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
   }
 
   /**
-   * Change the status of the life checkboxes
-   * @param {Event} event
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _onSquareChange(event) {
-    return handleSquareChange(this.actor, event);
-  }
-
-  /**
    * Init The percentage of visibility of the image in the evolution tab
    * @param {object} context
    * @private
@@ -351,9 +297,8 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
     let trait = $(event.currentTarget).attr('data-trait');
     let evolution = ($(event.currentTarget).attr('data-operation') === "plus") ? 20 : -20;
 
-    const actorData = foundry.utils.duplicate(this.actor);
-    let visibilityPercentage = actorData.system.traits[trait.toLowerCase()].evo;
-    visibilityPercentage = visibilityPercentage + evolution;
+    const key = trait.toLowerCase();
+    let visibilityPercentage = this.actor.system.traits[key].evo + evolution;
     if (visibilityPercentage > 100 || visibilityPercentage < 0) return;
 
     // The percentage stay between 0 and 100
@@ -364,8 +309,7 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
       imageElem.style.clipPath = "inset(0% " + (100 - visibilityPercentage) + "% 0% 0%)";
     }
 
-    actorData.system.traits[trait.toLowerCase()].evo = visibilityPercentage;
-    await this.actor.update(actorData, { render: false });
+    await this.actor.update({ [`system.traits.${key}.evo`]: visibilityPercentage }, { render: false });
   }
 
   /**
@@ -377,17 +321,17 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
   async _onReinit(event){
     event.preventDefault();
 
-    const actorData = foundry.utils.duplicate(this.actor);
-    for (let [key] of Object.entries(actorData.system.traits)) {
-      actorData.system.traits[key].use = 0;
+    const update = {};
+    for (const key of Object.keys(this.actor.system.traits)) {
+      update[`system.traits.${key}.use`] = 0;
     }
 
     // Mise à jour sans re-render
-    await this.actor.update(actorData, { render: false });
+    await this.actor.update(update, { render: false });
 
     // MAJ manuelle des inputs dans l'UI
     const html = this.element; // Pas besoin de re-wrap avec $
-    for (let key of Object.keys(actorData.system.traits)) {
+    for (const key of Object.keys(this.actor.system.traits)) {
       const selector = `input[name="system.traits.${key}.use"]`;
       const input = html.querySelector(selector);
       if (input) input.value = 0;
@@ -414,7 +358,7 @@ export class yuigahamaActorSheet extends HandlebarsApplicationMixin(ActorSheetV2
     const html = await foundry.applications.handlebars.renderTemplate(yuigahamaActorSheet.SEVEN_LUCKY_TEMPLATE, templateData);
 
     ChatMessage.create({
-      type: CONST.CHAT_MESSAGE_STYLES.OOC,
+      style: CONST.CHAT_MESSAGE_STYLES.OOC,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       sound: CONFIG.sounds.notification,
       content: html

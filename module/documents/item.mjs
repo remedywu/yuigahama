@@ -7,7 +7,7 @@ export class yuigahamaItem extends Item {
     // Replace default image
     if (data.img === undefined) data.img = getDefaultImg(data.type);
 
-    await super.create(data, options);
+    return super.create(data, options);
   }
 
   /**
@@ -31,5 +31,21 @@ export class yuigahamaItem extends Item {
     rollData.item = foundry.utils.deepClone(this.system);
 
     return rollData;
+  }
+
+  /**
+   * Display this item in the chat log (used by hotbar item macros).
+   * Attributs have no rollable formula, so we post their description.
+   * @returns {Promise<ChatMessage>}
+   */
+  async roll() {
+    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    const content = this.system?.description || this.system?.subtitle || "";
+
+    return ChatMessage.create({
+      speaker,
+      flavor: this.name,
+      content
+    });
   }
 }

@@ -93,6 +93,16 @@
       },
       "description": "Description",
       "regles_opt": "Règles Optionnelles"
+    },
+    "effects": {
+      "new": "Nouvel effet",
+      "temporary": "Effets temporaires",
+      "passive": "Effets passifs",
+      "inactive": "Effets inactifs"
+    },
+    "notifications": {
+      "ownedItemOnly": "Vous ne pouvez créer des macros que pour des objets possédés",
+      "itemNotFound": "Objet {name} introuvable. Vous devrez peut-être supprimer et recréer cette macro."
     }
   },
   "SETTINGS": {

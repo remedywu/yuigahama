@@ -10,19 +10,6 @@ export class yuigahamaActor extends Actor {
   }
 
   /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["yuigahama"],
-      template: "systems/yuigahama/templates/actor/actor-personnage.sheet",
-      tabs: [{
-        navSelector: ".sheet-tabs",
-        contentSelector: ".sheet-body",
-        initial: "core",
-      }]
-    });
-  }
-  *
-  /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes
     // the following, in order: data reset (to clear active effects),
@@ -62,11 +49,9 @@ export class yuigahamaActor extends Actor {
    */
   async updateTokenUse(countTokens){
     if (countTokens <=0) return ;
-    const actorData = foundry.utils.duplicate(this);
-    actorData.system.token.value -= countTokens;
-    if (actorData.system.token.value<0) actorData.system.token.value =0;
+    const newValue = Math.max(0, this.system.token.value - countTokens);
 
-    await this.update(actorData);
+    await this.update({ "system.token.value": newValue });
   }
 
   /**
@@ -75,14 +60,11 @@ export class yuigahamaActor extends Actor {
    * @returns {Promise<void>}
    */
   async updateEvolutionStats(traitLabel){
-    const actorData = foundry.utils.duplicate(this);
-    for (let traitObj in actorData.system.traits) {
-      if (traitObj===traitLabel.toLowerCase()){
-        actorData.system.traits[traitObj].use +=1;
-      }
-    }
+    const key = traitLabel.toLowerCase();
+    const trait = this.system.traits?.[key];
+    if (!trait) return;
 
-    await this.update(actorData);
+    await this.update({ [`system.traits.${key}.use`]: trait.use + 1 });
   }
 
 }

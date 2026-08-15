@@ -23,3 +23,6 @@
 ## 1.1.1
 - Use TypeDataModel for Player and PNJ instead of template.json
 - handleSquareChange in common
+
+## 1.1.2
+- Compatibility Minimal FoundryVTT Version 14
