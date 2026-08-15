@@ -143,7 +143,8 @@ export class yuigahamaRoll extends Roll {
      */
     toJSON() {
         const json = super.toJSON();
-        json.class = yuigahamaRoll; //!IMPORTANT
+        // Store the class *name* (string) so Roll.fromData can resolve it via CONFIG.Dice.rolls
+        json.class = this.constructor.name; //!IMPORTANT
 
         return json;
     }
