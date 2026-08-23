@@ -26,3 +26,7 @@
 
 ## 1.1.2
 - Compatibility Minimal FoundryVTT Version 14
+
+## 1.1.3
+- Change link in readme
+- FoundryVTT Version 14.367
