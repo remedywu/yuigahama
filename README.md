@@ -36,4 +36,4 @@ L'ensemble du code est sous licence Creative Commons CC BY-NC-SA 4.0.
 
 * Félicitations à Frédéric Bessy et aux Éditions du Troisième Œil : **Yuigahama Bad Seeds** a remporté le Prix Rôliste 2023 du meilleur JDR francophone !
 * Depuis mi-2025, le livre de base n'est plus édité par les Éditions du Troisième Œil. Vous pouvez tenter de le trouver d'occasion.
-* Pour les fans de Frédéric Bessy et les autres, découvrez son nouveau JDR : [Tōkyō Disruptions, Le Bureau des Apocryphes](https://www.lulu.com/fr/search?contributor=Fr%25C3%25A9d%25C3%25A9ric+Bessy&page=1&pageSize=10&adult_audience_rating=00&sortBy=PRODUCT_SALES_90_DAYS).
+* Pour les fans de Frédéric Bessy et les autres, découvrez son nouveau JDR : [Tōkyō Disruptions, Le Bureau des Apocryphes](https://www.lulu.com/fr/search?contributor=Frédéric+Bessy&page=1&pageSize=10&adult_audience_rating=00&sortBy=PRODUCT_SALES_90_DAYS).
